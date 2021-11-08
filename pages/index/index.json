@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "commit-show": "../../components/commitShowItem/commitShowItem",
+    "van-notify": "@vant/weapp/notify/index"
+  },
+  "backgroundColor":"#fff",
+  "backgroundTextStyle":"dark",
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance":50
+}

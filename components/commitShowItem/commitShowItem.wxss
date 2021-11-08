@@ -1,0 +1,89 @@
+/* components/commitShowItem/commitShowItem.wxss */
+.container{
+  position: relative;
+  padding: 20rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.container::after{
+  position: absolute;
+  content:'';
+  width: 90%;
+  left: 5%;
+  bottom: 0;
+  height: 1rpx;
+  background: #f1f1f1;
+}
+
+.userInfo_text{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.avatar{
+  width: 100rpx;
+  height: 100rpx;
+  overflow: hidden;
+  margin-right: 30rpx;
+  border-radius: 50%;
+  border: 2rpx #000 solid;
+}
+
+.avatarImg{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.nickName_text{
+  width: 80%;
+}
+
+.niceName{
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.text{
+  margin-top: 10rpx;
+  font-size: 28rpx;
+}
+
+.imgs{
+  width: 75%;
+  overflow: hidden;
+  height: auto;
+  margin-left: 132rpx;
+  margin-top: 20rpx;
+}
+
+.commitImgs{
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 10rpx;
+}
+
+.operate{
+  width: 80%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.operateItem{
+  margin-right: 35rpx;
+}
+
+.kenIcon{
+  position: relative;
+  top: 5rpx;
+  transform: rotateZ(180deg);
+  transform-origin: center;
+  /* margin-top: 10rpx; */
+}
+.operateText{
+  font-size: 25rpx;
+  margin-left: 5rpx;
+}

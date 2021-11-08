@@ -1,0 +1,16 @@
+<view class="container">
+  <van-notify id="van-notify" />
+  <van-skeleton wx:if="{{commitList.length === 0}}" title avatar row="3" />
+  <commit-show
+    wx:for="{{commitList}}" 
+    wx:for-index="index" 
+    wx:fot-item="item"
+    wx:key="index"
+    fileList="{{item.fileList}}"
+    location="{{item.location}}"
+    textValue="{{item.textValue}}"
+    openid="{{item.userInfo.openId}}"
+    >
+  </commit-show>
+  <view wx:if="{{commitList.length >= 3}}" class="bottomTip">{{bottomTip}}</view>
+</view>

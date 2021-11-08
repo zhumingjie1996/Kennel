@@ -1,0 +1,30 @@
+/* pages/write/write.wxss */
+
+.container{
+  padding:0 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textContainer{
+  width: 100%;
+  height: 250rpx;
+  margin-bottom: 50rpx;
+  overflow: scroll;
+}
+
+.uploader{
+  width: 600rpx;
+}
+
+.getLocation{
+  width: 100%;
+}
+
+.commit{
+  opacity: 0;
+  position: fixed;
+  bottom: 20rpx;
+  width: 80%;
+}

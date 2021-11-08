@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-tag": "@vant/weapp/tag/index"
+  },
+  "navigationBarBackgroundColor": "#F5F5F5",
+  "backgroundColor":"#fff"
+}

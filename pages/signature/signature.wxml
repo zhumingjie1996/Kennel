@@ -1,0 +1,12 @@
+<!--pages/signature/signature.wxml-->
+<van-cell-group>
+  <van-field
+    value="{{ text }}"
+    label="个性签名"
+    placeholder="{{defaultText===''?'编辑个性签名':defaultText}}"
+    input-align="right"
+    maxlength='15'
+    bindblur="getText"
+  />
+</van-cell-group>
+<van-button class="commit" type="primary" block size="normal" color="#000" bindtap="commit">确定</van-button>

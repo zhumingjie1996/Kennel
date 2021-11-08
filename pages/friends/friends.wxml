@@ -1,0 +1,2 @@
+<!--pages/friends/friends.wxml-->
+<van-dialog id="van-dialog" showConfirmButton='{{false}}' />

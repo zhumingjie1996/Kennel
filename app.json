@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/write/write",
+    "pages/friends/friends",
+    "pages/me/me",
+    "pages/signature/signature"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "帅气の犬舍",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "selectedColor": "#000000",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "狗叫",
+        "iconPath": "assets/icons/integral.png",
+        "selectedIconPath": "assets/icons/integral-fill.png"
+      },
+      {
+        "pagePath": "pages/write/write",
+        "text": "狗爪",
+        "iconPath": "assets/icons/comments.png",
+        "selectedIconPath": "assets/icons/comments-fill.png"
+      },
+      {
+        "pagePath": "pages/friends/friends",
+        "text": "狗们",
+        "iconPath": "assets/icons/Customer-management.png",
+        "selectedIconPath": "assets/icons/Customer-management-fill.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "assets/icons/bussiness-man.png",
+        "selectedIconPath": "assets/icons/bussiness-man-fill.png"
+      }
+    ]
+  }
+}

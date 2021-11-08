@@ -1,0 +1,22 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  box-sizing: border-box;
+} 
+
+/* fadeInDown */
+.fadeInDown{
+  animation: fadeInDown .5s linear forwards;
+}
+
+@keyframes fadeInDown{
+  0%{
+    opacity: 0;
+    transform: translateY(-50rpx);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

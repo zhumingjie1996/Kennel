@@ -1,0 +1,8 @@
+/* pages/signature/signature.wxss */
+
+.commit{
+  position: fixed;
+  width: 80%;
+  bottom: 50rpx;
+  left: 10%;
+}

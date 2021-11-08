@@ -1,0 +1,37 @@
+<!--pages/me/me.wxml-->
+<view class="container">
+  <view class="{{fadeClass ? 'baseInfoContainer fadeInDown' : 'baseInfoContainer'}}">
+    <view class="openData">
+      <view class="nickname">
+        <text wx:if="{{isLogin}}">{{nickname}}</text>
+        <text wx:else class="loginBtn" bindtap="getUserProfile">点击授权昵称头像</text>
+        <view class="signatureContainer">
+          <text wx:if="{{isLogin}}" class="signature" bindtap="writeSignature">{{signature===''?'编辑个性签名':signature}}</text>
+          <image class="pen" src="../../assets/icons/pen.png"></image>
+        </view>
+      </view>
+      <view class="avatar" bindtap="touchAvatar" animation="{{animationData}}">
+        <image class="avatarImg" wx:if="{{isLogin}}" src="{{avatarUrl}}"></image>
+        <image class="avatarImg" wx:else style="width: 100%; height: 100%; background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
+      </view>
+    </view>
+    <view class="socialInfo">
+      <view class="socialInfoItem">
+        <text class="socialInfoItemTitle">被舔</text>
+        <text class="socialInfoItemNum">0</text>
+      </view>
+      <view class="socialInfoItem">
+        <text class="socialInfoItemTitle">被啃</text>
+        <text class="socialInfoItemNum">0</text>
+      </view>
+      <view class="socialInfoItem">
+        <text class="socialInfoItemTitle">舔人</text>
+        <text class="socialInfoItemNum">0</text>
+      </view>
+      <view class="socialInfoItem">
+        <text class="socialInfoItemTitle">啃人</text>
+        <text class="socialInfoItemNum">0</text>
+      </view>
+    </view>
+  </view>
+</view>

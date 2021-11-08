@@ -1,0 +1,26 @@
+<!--components/commitShowItem/commitShowItem.wxml-->
+<view class="container">
+  <view class="userInfo_text">
+    <view class="avatar">
+      <image class="avatarImg" src="{{avatarUrl === '' ? '../../assets/icons/avatar_default.png' : avatarUrl}}"></image>
+    </view>
+    <view class="nickName_text">
+      <view class="niceName">{{nickname === '' ? '匿名犬' : nickname}}</view>
+      <view class="text">{{textValue}}</view>
+    </view>
+
+  </view>
+  <view class="imgs">
+    <image class="commitImgs" wx:for="{{fileList}}" wx:for-index="index" wx:key="index" wx:for-item="item"  src="{{item.fileID}}" bindtap="previewImgs" data-imgUrl="{{index}}"></image>
+  </view>
+  <view class="operate">
+    <view class="operateItem tian" bindtap="tian">
+      <van-icon name="good-job-o" />
+      <text class="operateText">舔</text>
+    </view>
+    <view class="operateItem ken" bindtap="ken">
+      <van-icon class="kenIcon" name="good-job-o" />
+      <text class="operateText">啃</text>
+    </view>
+  </view>
+</view>
