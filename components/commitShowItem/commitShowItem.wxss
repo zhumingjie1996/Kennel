@@ -45,6 +45,12 @@
   font-size: 32rpx;
 }
 
+.dateAndTime{
+  font-size: 25rpx;
+  font-weight: 400;
+  color: rgb(161, 161, 161);
+}
+
 .text{
   margin-top: 10rpx;
   font-size: 28rpx;
@@ -59,18 +65,39 @@
 }
 
 .commitImgs{
+  display: inline-block;
   width: 160rpx;
   height: 160rpx;
   margin-right: 10rpx;
 }
 
-.operate{
+.commitImgsInner{
+  width: 100%;
+  height: 100%;
+}
+
+.operate,
+.time{
   width: 80%;
-  margin-left: 10%;
+  margin-left: 15%;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.locationText{
+  font-size: 25rpx;
+  margin-left: 5rpx;
+}
+
+.ken_tian{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 .operateItem{
   margin-right: 35rpx;

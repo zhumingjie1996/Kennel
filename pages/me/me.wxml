@@ -7,7 +7,7 @@
         <text wx:else class="loginBtn" bindtap="getUserProfile">点击授权昵称头像</text>
         <view class="signatureContainer">
           <text wx:if="{{isLogin}}" class="signature" bindtap="writeSignature">{{signature===''?'编辑个性签名':signature}}</text>
-          <image class="pen" src="../../assets/icons/pen.png"></image>
+          <image wx:if="{{isLogin}}" class="pen" src="../../assets/icons/pen.png"></image>
         </view>
       </view>
       <view class="avatar" bindtap="touchAvatar" animation="{{animationData}}">

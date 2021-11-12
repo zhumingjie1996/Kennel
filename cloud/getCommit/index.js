@@ -11,5 +11,5 @@ exports.main = async (event, context) => {
   // const openid = wxContext.OPENID;
   // const rest = null;
   let pageNum = event.pageNum;
-  return await db.collection('commits').skip(pageNum*3).limit(3).get()
+  return await db.collection('commits').orderBy('date', 'desc').skip(pageNum*5).limit(5).get()
 }

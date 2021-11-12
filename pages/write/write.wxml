@@ -1,9 +1,9 @@
 <!--pages/write/write.wxml-->
 <view class="container">
   <van-cell-group class="textContainer">
-    <van-field model:value="{{ textValue }}" type="textarea" placeholder="说点什么..." autosize="true" border="false" maxlength="300"/>
+    <van-field model:value="{{ textValue }}" type="textarea" placeholder="说点什么..." autosize="true" border="false" maxlength="300" auto-focus="{{true}}"/>
   </van-cell-group>
-  <van-uploader class="uploader" file-list="{{ fileList }}" max-count="9" deletable="{{ true }}" multiple='true' bind:after-read="afterRead" bind:before-read="beforeRead" image-fit="aspectFill" bind:delete="deleteImg" preview-size='185rpx' />
+  <van-uploader class="uploader" file-list="{{ fileList }}" max-count="9" deletable="{{ true }}" multiple='true' use-before-read="{{true}}" bind:after-read="afterRead" bind:before-read="beforeRead" image-fit="aspectFill" bind:delete="deleteImg" preview-size='185rpx' accept="media" max-duration="60" compressed="{{true}}"/>
   <van-cell class="getLocation" title="位置" is-link value="{{location}}" bind:click="chooseLocation" icon="location-o"/>
   <van-button class="{{fadeClass ? 'commit fadeInDown' : 'commit'}}" type="primary" block size="normal" color="#000" bindtap="commit">上传</van-button>
 </view>

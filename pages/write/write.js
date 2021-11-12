@@ -16,10 +16,12 @@ Page({
       file,
       callback
     } = event.detail;
-    callback(file.type === 'image');
+    console.log(file)
+    callback(true);
   },
   afterRead(event) {
     let _this = this;
+    console.log(event);
     _this.setData({
       fileList: _this.data.fileList.concat(event.detail.file)
     })
@@ -55,7 +57,7 @@ Page({
       return
     } else if (_this.data.fileList.length === 0) {
       wx.showToast({
-        title: '未添加图片',
+        title: '未添加图片或视频',
         icon: 'error'
       });
       return
@@ -63,22 +65,22 @@ Page({
 
     var datahash = Date.parse(new Date());
     wx.showLoading({
-      title: '',
+      title: '正在上传',
     })
     const {
       fileList
     } = _this.data;
-    const uploadTasks = fileList.map((file, index) => _this.uploadFilePromise(`my-photo${datahash}${index}.png`, file));
+    const uploadTasks = fileList.map((file, index) => _this.uploadFilePromise(`my-photo${datahash}${index}-${file.type === 'image'?'image':'video'}`, file));
+    console.log(fileList)
     Promise.all(uploadTasks)
       .then(data => {
-        console.log(data);
+        console.log(data)
         return wx.cloud.callFunction({
           name: 'addCommit',
           data: {
             fileList: data,
             location: _this.data.location,
             textValue: _this.data.textValue
-
           }
         })
       })
@@ -107,7 +109,7 @@ Page({
   uploadFilePromise(fileName, chooseResult) {
     return wx.cloud.uploadFile({
       cloudPath: fileName,
-      filePath: chooseResult.url
+      filePath: chooseResult.url,
     });
   },
 

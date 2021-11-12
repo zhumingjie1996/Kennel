@@ -11,16 +11,28 @@
 
   </view>
   <view class="imgs">
-    <image class="commitImgs" wx:for="{{fileList}}" wx:for-index="index" wx:key="index" wx:for-item="item"  src="{{item.fileID}}" bindtap="previewImgs" data-imgUrl="{{index}}"></image>
+    <view class="commitImgs" wx:for="{{imgList}}" wx:for-index="index" wx:key="index" wx:for-item="item">
+      <image class="commitImgsInner" wx:if="{{item.type === 'image'}}" src="{{item.url}}" mode="aspectFill" data-nowindex="{{index}}" bindtap="previewImgs"></image>
+      <video class="commitImgsInner" wx:elif="{{item.type === 'video'}}" src="{{item.url}}" controls="false" object-fit="fill" data-nowindex="{{index}}" bindtap="previewImgs"></video>
+    </view>
+  </view>
+  <view class="time">
+    <text class="dateAndTime">{{date}}</text>
   </view>
   <view class="operate">
-    <view class="operateItem tian" bindtap="tian">
-      <van-icon name="good-job-o" />
-      <text class="operateText">舔</text>
+    <view class="location">
+      <van-icon name="location-o" wx:if="{{location !== ''}}" />
+      <text class="locationText">{{location}}</text>
     </view>
-    <view class="operateItem ken" bindtap="ken">
-      <van-icon class="kenIcon" name="good-job-o" />
-      <text class="operateText">啃</text>
+    <view class="ken_tian">
+      <view class="operateItem tian" bindtap="tian">
+        <van-icon name="good-job-o" />
+        <text class="operateText">舔</text>
+      </view>
+      <view class="operateItem ken" bindtap="ken">
+        <van-icon class="kenIcon" name="good-job-o" />
+        <text class="operateText">啃</text>
+      </view>
     </view>
   </view>
 </view>
