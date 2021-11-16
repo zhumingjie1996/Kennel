@@ -27,15 +27,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    Dialog.alert({
-      title: '这里还没搞',
-      message: '暂时不能和狗子们互动！',
-    }).then(() => {
-      Dialog.alert({
-        title: '再说一遍',
-        message: '暂时不能和狗子们互动！'
-      })
-    });
+    
   },
 
   /**

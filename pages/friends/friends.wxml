@@ -1,2 +1,6 @@
 <!--pages/friends/friends.wxml-->
-<van-dialog id="van-dialog" showConfirmButton='{{false}}' />
+<view class="container">
+    <view class="friendsList">
+        <friends-list-item></friends-list-item>
+    </view>
+</view>

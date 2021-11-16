@@ -27,11 +27,11 @@
     <view class="ken_tian">
       <view class="operateItem tian" bindtap="tian">
         <van-icon name="good-job-o" />
-        <text class="operateText">舔</text>
+        <text class="operateText">{{'舔（'+tianNum+'）'}}</text>
       </view>
       <view class="operateItem ken" bindtap="ken">
         <van-icon class="kenIcon" name="good-job-o" />
-        <text class="operateText">啃</text>
+        <text class="operateText">{{'啃（'+ kenNum+'）'}}</text>
       </view>
     </view>
   </view>

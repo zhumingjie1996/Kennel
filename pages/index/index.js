@@ -15,6 +15,7 @@ Page({
         }
       })
       .then(res => {
+        console.log(res);
         _this.setData({
           commitList: _this.data.commitList.concat(res.result.data)
         });

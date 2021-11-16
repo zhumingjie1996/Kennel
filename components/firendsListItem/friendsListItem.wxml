@@ -1,0 +1,14 @@
+<!--components/firendsListItem/friendsListItem.wxml-->
+<view class="container">
+    <view class="avatar">
+        <image class="avatarImg" style="width: 100%; height: 100%; background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
+    </view>
+    <view class="nickNameAndSign">
+        <view class="nickName">
+            <text>akamj</text>
+        </view>
+        <view class="signature">
+            <text>你若安好，便是晴天</text>
+        </view>
+    </view>
+</view>

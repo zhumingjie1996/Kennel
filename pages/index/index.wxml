@@ -11,6 +11,7 @@
     textValue="{{item.textValue}}"
     dateAndTime="{{item.date}}"
     openid="{{item.userInfo.openId}}"
+    commitId="{{item._id}}"
     >
   </commit-show>
   <view wx:if="{{commitList.length >= 3}}" class="bottomTip">{{bottomTip}}</view>
