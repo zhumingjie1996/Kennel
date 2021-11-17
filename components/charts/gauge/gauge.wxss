@@ -1,0 +1,5 @@
+/* components/charts/gauge/gauge.wxss */
+.container{
+    width: 700rpx;
+    height: 700rpx;
+}

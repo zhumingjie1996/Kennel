@@ -1,0 +1,4 @@
+<!--components/charts/gauge/gauge.wxml-->
+<view class="container">
+    <ec-canvas id="gaugeChart" class="gauge" canvas-id="gauge-bar" ec="{{ec}}"></ec-canvas>
+</view>

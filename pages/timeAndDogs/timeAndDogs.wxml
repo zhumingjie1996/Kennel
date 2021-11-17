@@ -1,0 +1,21 @@
+<!--pages/timeAndDogs/timeAndDogs.wxml-->
+<view class="container">
+    <view class="chart">
+        <gauge-chart chartData="{{testData}}"></gauge-chart>
+    </view>
+    <view class="button">
+        <van-button class="commit" type="primary" block size="normal" color="#000" bindtap="commit">点击参战</van-button>
+    </view>
+
+    <view class="notFight">丑陋地暂休</view>
+
+    <view class="userList">
+        <view class="userListTitle">参战列表</view>
+    </view>
+    <view class="userList">
+        <view class="userListTitle">暂休列表</view>
+    </view>
+    <van-popup show="{{ datetimePickerShow }}" round position="bottom" custom-style="height: 50%" z-index='{{99999}}' overlay bind:close="onClose">
+        <van-datetime-picker type="time" value="{{ currentDate }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" title="{{'选择参战时间'}}" bind:confirm="confirmTime" bind:cancel="cancelTime" />
+    </van-popup>
+</view>

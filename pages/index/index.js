@@ -1,6 +1,8 @@
 // index.js
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
+var RemoveFade = require('../../behaviors/removeFade/removeFade.js');
 Page({
+  behaviors: [RemoveFade],
   data: {
     pageNum: 0, //当前页码
     commitList: [],
@@ -27,6 +29,12 @@ Page({
   onLoad() {
     let _this = this;
     _this.getCommits()
+  },
+  onShow: function () {
+    this.addFade();
+  },
+  onHide(){
+    this.removeFade();
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

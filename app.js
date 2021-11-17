@@ -15,7 +15,7 @@ App({
         name: 'testCloudFunc',
       })
       .then(res => {
-        this.globalData.userInfo.openId = res.result._openid
+        this.globalData.userInfo.openId = res.result.openid
         return res.result._openid
       })
       .then(openid => {

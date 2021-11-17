@@ -1,14 +1,16 @@
 <!--components/firendsListItem/friendsListItem.wxml-->
 <view class="container">
     <view class="avatar">
-        <image class="avatarImg" style="width: 100%; height: 100%; background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
+        <image wx:if="{{userInfo.avatarUrl && userInfo.avatarUrl !== ''}}" class="avatarImg" style="width: 100%; height: 100%;" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+        <image wx:else class="avatarImg" style="width: 100%; height: 100%; background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
     </view>
     <view class="nickNameAndSign">
         <view class="nickName">
-            <text>akamj</text>
+            <text wx:if="{{userInfo.nickName && userInfo.nickName !== ''}}">{{userInfo.nickName}}</text>
+            <text wx:else>{{'匿名犬'}}</text>
         </view>
-        <view class="signature">
-            <text>你若安好，便是晴天</text>
+        <view class="signature" wx:if="{{userInfo.signature && userInfo.signature !== ''}}">
+            <text>{{userInfo.signature}}</text>
         </view>
     </view>
 </view>

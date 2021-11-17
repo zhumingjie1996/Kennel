@@ -1,1 +1,23 @@
 /* pages/friends/friends.wxss */
+.container{
+    opacity: 0;
+    width: 100%;
+}
+
+.friendsListTitle,.activeTitle{
+    height: 50rpx;
+    padding: 0 0 0 20rpx;
+    margin-bottom: 20rpx;
+    box-sizing: border-box;
+    font-weight: bolder;
+    /* font-size: large; */
+    border-left: 10rpx solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.activeTitle{
+    margin-top: 30rpx;
+}

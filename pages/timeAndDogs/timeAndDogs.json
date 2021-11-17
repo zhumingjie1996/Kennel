@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "gauge-chart":"../../components/charts/gauge/gauge",
+    "van-button": "@vant/weapp/button/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-popup": "@vant/weapp/popup/index"
+  }
+}
