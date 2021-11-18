@@ -10,7 +10,7 @@
         <van-button wx:else class="commit" type="primary" block size="normal" color="{{isActive ? '#000' : '#7a7a7a'}}" bindtap="commit">{{isActive ? '点击参战' : '今日报名已截至'}}</van-button>
     </view>
 
-    <view class="notFight" wx:if="{{nowUserInfo.xiu === true || nowUserInfo.xiu === false}}"></view>
+    <view class="notFight" wx:if="{{nowUserInfo.xiu === true || nowUserInfo.xiu === false || !isActive}}"></view>
     <view class="notFight" wx:else bindtap="commitXiu">丑陋地暂休</view>
 
     <view class="userList" wx:if="{{notXiuList.length !== 0}}">
