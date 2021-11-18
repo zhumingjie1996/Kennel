@@ -1,21 +1,54 @@
 <!--pages/timeAndDogs/timeAndDogs.wxml-->
 <view class="container">
+    <van-notice-bar mode="closeable" color="#fff" background="#000" delay='2' left-icon='volume-o' text="每天9:00至17:30自动开放当天的几点几狗统计。积极响应号召，拒绝丑陋暂休！" />
     <view class="chart">
-        <gauge-chart chartData="{{testData}}"></gauge-chart>
+        <gauge-chart chartData="{{notXiuList.length}}"></gauge-chart>
     </view>
     <view class="button">
-        <van-button class="commit" type="primary" block size="normal" color="#000" bindtap="commit">点击参战</van-button>
+        <van-button wx:if="{{nowUserInfo && nowUserInfo.openId && !nowUserInfo.xiu}}" class="commit" type="primary" block size="normal" color="{{'#7a7a7a'}}" bindtap="removeNowInfo">{{'已参战'}}</van-button>
+        <van-button wx:elif="{{nowUserInfo && nowUserInfo.openId && nowUserInfo.xiu}}" class="commit" type="primary" block size="normal" color="{{'#7a7a7a'}}" bindtap="removeNowInfo">{{'已暂休'}}</van-button>
+        <van-button wx:else class="commit" type="primary" block size="normal" color="{{isActive ? '#000' : '#7a7a7a'}}" bindtap="commit">{{isActive ? '点击参战' : '今日报名已截至'}}</van-button>
     </view>
 
-    <view class="notFight">丑陋地暂休</view>
+    <view class="notFight" wx:if="{{nowUserInfo.xiu === true || nowUserInfo.xiu === false}}"></view>
+    <view class="notFight" wx:else bindtap="commitXiu">丑陋地暂休</view>
 
-    <view class="userList">
+    <view class="userList" wx:if="{{notXiuList.length !== 0}}">
         <view class="userListTitle">参战列表</view>
+        <view class="userListInner">
+            <view class="userListInnerItem" wx:for="{{notXiuList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                <image class="avatarImg" wx:if="{{item.avatarUrl !== ''}}" src="{{item.avatarUrl}}"></image>
+                <image wx:else class="avatarImg" style="background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
+                <text class="time">{{item.time}}</text>
+            </view>
+        </view>
     </view>
-    <view class="userList">
+    <view class="userList" wx:if="{{xiuList.length !== 0}}">
         <view class="userListTitle">暂休列表</view>
+        <view class="userListInner">
+            <view class="userListInnerItem_xiu" wx:for="{{xiuList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                <image class="avatarImg" wx:if="{{item.avatarUrl !== ''}}" src="{{item.avatarUrl}}"></image>
+                <image wx:else class="avatarImg" style="background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
+                <text class="reason">{{item.xiuReason}}</text>
+            </view>
+        </view>
     </view>
-    <van-popup show="{{ datetimePickerShow }}" round position="bottom" custom-style="height: 50%" z-index='{{99999}}' overlay bind:close="onClose">
+    <van-popup show="{{ datetimePickerShow }}" round position="bottom" close-on-click-overlay custom-style="height: 50%" z-index='{{99999}}' safe-area-inset-bottom="true" lock-scroll="true" overlay bind:close="onClose">
         <van-datetime-picker type="time" value="{{ currentDate }}" min-hour="{{ minHour }}" max-hour="{{ maxHour }}" title="{{'选择参战时间'}}" bind:confirm="confirmTime" bind:cancel="cancelTime" />
+    </van-popup>
+
+    <van-popup class="xiuReasonPopup" show="{{ xiuReasonShow }}" round position="bottom" custom-style="height: 70%" close-on-click-overlay safe-area-inset-bottom="true" lock-scroll="true" z-index='{{99999}}' overlay bind:close="onCloseXiuReason">
+        <text class="xiuReasonTitle">选择理由</text>
+        <van-radio-group border="{{false}}" class="xiuReasonPopupRadio" value="{{ reasonRadio }}" bind:change="onXiuListRadioChange">
+            <van-cell-group border="{{false}}">
+                <van-cell wx:for="{{xiuReasonList}}" wx:for-item="item" wx:for-index="index" wx:key="index" title="{{item}}" clickable data-name="{{item}}" bind:click="xiuReasonOnClick">
+                    <van-radio checked-color='#000' slot="right-icon" name="{{item}}" />
+                </van-cell>
+            </van-cell-group>
+        </van-radio-group>
+        <van-field class="xiuReasonPopupInput" model:value="{{ xiuReasonInputValue }}" placeholder="自定义输入（最多20字）" maxlength="20" border="{{ true }}" bind:change="inputXiuReason" />
+        <view class="xiuReasonCommit">
+            <van-button class="commit" type="primary" block size="small" color="#000" bindtap="commitXiuReason">确定</van-button>
+        </view>
     </van-popup>
 </view>

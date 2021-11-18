@@ -11,12 +11,12 @@
             </view>
         </view>
     </van-cell>
-    <van-cell icon="chart-trending-o" is-link>
+    <van-cell icon="chart-trending-o" is-link bindtap="toTimeAndDogsNone">
         <view slot="title">
             <view class="van-cell-text">战况分析</view>
         </view>
     </van-cell>
-    <van-cell icon="point-gift-o" is-link>
+    <!-- <van-cell icon="point-gift-o" is-link>
         <view slot="title">
             <view class="van-cell-text">匿名的投喂<van-tag round style="margin-left: 20rpx;" color="#000" text-color="#fff">随机</van-tag>
             </view>
@@ -32,8 +32,8 @@
         <view slot="title">
             <view class="van-cell-text">二狗的骚话</view>
         </view>
-    </van-cell>
-    <van-cell icon="flag-o" is-link>
+    </van-cell> -->
+    <van-cell icon="flag-o" is-link bindtap="toTimeAndDogsNone">
         <view slot="title">
             <view class="van-cell-text">线下GANK</view>
         </view>
