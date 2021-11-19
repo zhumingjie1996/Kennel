@@ -20,6 +20,10 @@
     box-sizing: border-box;
 }
 
+.userList_zanxiu{
+    margin-top: 10rpx;
+}
+
 .userListTitle{
     padding-left: 20rpx;
     border-left: 10rpx #000 solid;
