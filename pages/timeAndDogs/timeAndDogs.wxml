@@ -23,7 +23,7 @@
             </view>
         </view>
     </view>
-    <view class="userList" wx:if="{{xiuList.length !== 0}}">
+    <view class="userList userList_xiu" wx:if="{{xiuList.length !== 0}}">
         <view class="userListTitle">暂休列表</view>
         <view class="userListInner">
             <view class="userListInnerItem_xiu" wx:for="{{xiuList}}" wx:for-index="index" wx:for-item="item" wx:key="index">

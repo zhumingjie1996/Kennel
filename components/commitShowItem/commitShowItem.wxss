@@ -79,7 +79,7 @@
 .operate,
 .time{
   width: 80%;
-  margin-left: 15%;
+  margin-left: 18.5%;
   margin-top: 20rpx;
   margin-bottom: 20rpx;
   display: flex;
@@ -113,4 +113,32 @@
 .operateText{
   font-size: 25rpx;
   margin-left: 5rpx;
+}
+
+.comment{
+  width: 68%;
+  height: 50rpx;
+  margin-left: 18.5%;
+  font-size: 25rpx;
+  background: rgb(247, 247, 247);
+  padding: 0 20rpx;
+  border-radius: 10rpx;
+}
+
+.commentList{
+  width: 68%;
+  padding: 0 20rpx;
+  margin-left: 18.5%;
+  font-size: 25rpx;
+}
+
+.weui-input{
+  height: 100%;
+}
+
+.comment-list{
+  width: 100%;
+  margin-top: 15rpx;
+  /* height: auto;display: flex; */
+  word-wrap:break-word;
 }

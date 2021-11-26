@@ -56,13 +56,31 @@ Page({
       })
       return
     } else if (_this.data.fileList.length === 0) {
-      wx.showToast({
-        title: '未添加图片或视频',
-        icon: 'error'
-      });
-      return
+      wx.showModal({
+        title: '提示',
+        content: '是否不添加图片或视频',
+        success: function (e) {
+          if (e.confirm) {
+            _this.commit()
+          } else {
+            return;
+          }
+        }
+      })
+    }else{
+      _this.commit()
     }
+  },
 
+  uploadFilePromise(fileName, chooseResult) {
+    return wx.cloud.uploadFile({
+      cloudPath: fileName,
+      filePath: chooseResult.url,
+    });
+  },
+
+  commit: function () {
+    let _this = this;
     var datahash = Date.parse(new Date());
     wx.showLoading({
       title: '正在上传',
@@ -104,13 +122,6 @@ Page({
         });
         console.log(e);
       });
-  },
-
-  uploadFilePromise(fileName, chooseResult) {
-    return wx.cloud.uploadFile({
-      cloudPath: fileName,
-      filePath: chooseResult.url,
-    });
   },
 
   /**

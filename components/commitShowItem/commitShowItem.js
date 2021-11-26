@@ -1,7 +1,8 @@
 // components/commitShowItem/commitShowItem.js
 import {
   formatTime
-} from '../../utils/util.js'
+} from '../../utils/util.js';
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -63,7 +64,10 @@ Component({
     },
     commitId: {
       type: String,
-      default: ''
+      default: '',
+      observer:function () {
+        this.getComments(0);
+      }
     }
   },
 
@@ -77,6 +81,8 @@ Component({
     date: "",
     tianNum: 0,
     kenNum: 0,
+    commentList:[],
+    commontValue:''
   },
   lifetimes: {
     attached: function () {
@@ -122,7 +128,7 @@ Component({
       let _this = this;
       if (!_this.data.commitId || _this.data.commitId === "") {
         wx.showToast({
-          title: '为获取到动态id',
+          title: '未获取到动态id',
           icon: 'none'
         })
         return;
@@ -161,6 +167,42 @@ Component({
           commitId: _this.data.commitId,
           operateType
         }
+      })
+    },
+    getComments:function(type){
+      // 获取当前动态的评论列表
+      let _this = this;
+      wx.cloud.callFunction({
+        name:'getComment',
+        data:{
+          commitId:_this.data.commitId
+        }
+      }).then(res=>{
+        _this.setData({
+          commentList:type === 0 ? _this.data.commentList.concat(res.result.list) : res.result.list
+        })
+      })
+    },
+    confirmComment:function(e){
+      let _this = this;
+      wx.showLoading();
+      let commentValue = e.detail.value;
+      _this.setData({
+        commentValue
+      })
+      wx.cloud.callFunction({
+        name:'addComment',
+        data:{
+          value:_this.data.commentValue,
+          openid:app.globalData.userInfo.openId,
+          commitId: _this.data.commitId
+        }
+      }).then(()=>{
+        _this.getComments(1);
+        _this.setData({
+          commentValue:'',
+        });
+        wx.hideLoading()
       })
     }
   }

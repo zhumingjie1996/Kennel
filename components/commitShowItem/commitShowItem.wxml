@@ -29,10 +29,13 @@
         <van-icon name="good-job-o" />
         <text class="operateText">{{'舔（'+tianNum+'）'}}</text>
       </view>
-      <view class="operateItem ken" bindtap="ken">
-        <van-icon class="kenIcon" name="good-job-o" />
-        <text class="operateText">{{'啃（'+ kenNum+'）'}}</text>
-      </view>
     </view>
+  </view>
+  <view class="comment">
+    <!-- <van-field model:value="{{commentValue}}" border="{{false}}" placeholder="添加评论" bind:change="onCommentChange" /> -->
+    <input value="{{commentValue}}" class="weui-input" confirm-type='提交' placeholder="评论" bindconfirm="confirmComment"/>
+  </view>
+  <view class="commentList">
+    <view wx:for="{{commentList}}" wx:for-item="item" wx:for-index="index" wx:key="index" class="comment-list"><text style="font-weight: 700;">{{item.search[0].userInfo.nickName}}</text> ：{{item.value}}</view>
   </view>
 </view>
