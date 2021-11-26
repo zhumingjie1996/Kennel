@@ -20,8 +20,8 @@
     box-sizing: border-box;
 }
 
-.userList_xiu{
-    margin-top: 0rpx;
+.userList_zanxiu{
+    margin-top: 10rpx;
 }
 
 .userListTitle{
