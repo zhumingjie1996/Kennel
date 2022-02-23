@@ -10,7 +10,7 @@
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "帅气の犬舍",
+        "navigationBarTitleText": "POKE BALL",
         "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json",
@@ -19,19 +19,19 @@
         "list": [
             {
                 "pagePath": "pages/index/index",
-                "text": "狗叫",
+                "text": "动态",
                 "iconPath": "assets/icons/integral.png",
                 "selectedIconPath": "assets/icons/integral-fill.png"
             },
             {
                 "pagePath": "pages/write/write",
-                "text": "狗爪",
+                "text": "发表",
                 "iconPath": "assets/icons/comments.png",
                 "selectedIconPath": "assets/icons/comments-fill.png"
             },
             {
                 "pagePath": "pages/friends/friends",
-                "text": "狗们",
+                "text": "互动",
                 "iconPath": "assets/icons/Customer-management.png",
                 "selectedIconPath": "assets/icons/Customer-management-fill.png"
             },

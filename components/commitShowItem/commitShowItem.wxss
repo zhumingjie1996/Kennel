@@ -43,6 +43,36 @@
 .niceName{
   font-weight: bold;
   font-size: 32rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete{
+  display: inline-block;
+  font-weight: normal;
+  font-size: 20rpx;
+  height: 30rpx;
+  width: 30rpx;
+  position: relative;
+}
+
+.delete::before{
+  content: "";
+  position:absolute;
+  width: 1px;
+  height: 100%;
+  background: rgb(129, 129, 129);
+  transform: rotateZ(45deg);
+}
+.delete::after{
+  content: "";
+  position:absolute;
+  width: 1px;
+  height: 100%;
+  background: rgb(129, 129, 129);
+  transform: rotateZ(-45deg);
 }
 
 .dateAndTime{

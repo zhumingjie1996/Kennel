@@ -16,22 +16,22 @@
       </view>
     </view>
     <view class="socialInfo">
-      <view class="socialInfoItem">
+      <!-- <view class="socialInfoItem">
         <text class="socialInfoItemTitle">被舔</text>
         <text class="socialInfoItemNum">0</text>
-      </view>
+      </view> -->
       <view class="socialInfoItem">
-        <text class="socialInfoItemTitle">被啃</text>
+        <text class="socialInfoItemTitle">被赞</text>
         <text class="socialInfoItemNum">0</text>
       </view>
       <view class="socialInfoItem">
-        <text class="socialInfoItemTitle">舔人</text>
+        <text class="socialInfoItemTitle">赞</text>
         <text class="socialInfoItemNum">0</text>
       </view>
-      <view class="socialInfoItem">
+      <!-- <view class="socialInfoItem">
         <text class="socialInfoItemTitle">啃人</text>
         <text class="socialInfoItemNum">0</text>
-      </view>
+      </view> -->
     </view>
   </view>
 </view>

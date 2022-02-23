@@ -17,14 +17,14 @@ Page({
     let _this = this;
     _this.getUserList().then(res=>{
       let resList = res.result.data;
-      let friendList = [];
-      resList.map((item)=>{
-        if(item._openid !== app.globalData.userInfo.openId){
-          friendList.push(item)
-        }
-      })
+      // let friendList = [];
+      // resList.map((item)=>{
+      //   if(item._openid !== app.globalData.userInfo.openId){
+      //     friendList.push(item)
+      //   }
+      // })
       _this.setData({
-        friendList
+        friendList:resList
       })
     })
   },

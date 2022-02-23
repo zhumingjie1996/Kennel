@@ -26,6 +26,14 @@ Page({
         console.log(error);
       })
   },
+  deleteOver:function(){
+    let _this = this;
+    _this.setData({
+      commitList:[],
+      pageNum: 0
+    });
+    _this.getCommits();
+  },
   onLoad() {
     let _this = this;
     _this.getCommits()
@@ -48,12 +56,10 @@ Page({
     _this.getCommits();
     wx.stopPullDownRefresh({
       success: (res) => {
-        Notify({
-          message: '刷新成功',
-          color: '#fff',
-          background: '#000',
-          duration:"1000" 
-        });
+        wx.showToast({
+          title: '刷新成功😎',
+          icon:'none'
+        })
       },
     })
   },

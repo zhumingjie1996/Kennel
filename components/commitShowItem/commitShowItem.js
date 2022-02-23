@@ -18,6 +18,10 @@ Component({
             nickname: res.result.data[0].userInfo.nickName,
             avatarUrl: res.result.data[0].userInfo.avatarUrl
           })
+        });
+        // 如果openid和当前登陆的openid相同，则显示删除按钮
+        _this.setData({
+          showDelete:newVal === app.globalData.userInfo.openId
         })
       }
     },
@@ -82,7 +86,8 @@ Component({
     tianNum: 0,
     kenNum: 0,
     commentList:[],
-    commontValue:''
+    commontValue:'',
+    showDelete:false,
   },
   lifetimes: {
     attached: function () {
@@ -203,6 +208,34 @@ Component({
           commentValue:'',
         });
         wx.hideLoading()
+      })
+    },
+    delete(){
+      let _this = this;
+      wx.showModal({
+        title: '提示',
+        content: '🤔你确定要删掉吗🤔',
+        success (res) {
+          if (res.confirm) {
+            wx.cloud.callFunction({
+              name:'removeSomething',
+              data:{
+                  name:'commits',
+                  whereObj:{
+                      _id:_this.data.commitId
+                  }
+              }
+          }).then(res=>{
+            wx.showToast({
+              title: '删除成功啦😉',
+              icon:'none'
+            });
+          _this.triggerEvent('deleteOver')
+          })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
       })
     }
   }

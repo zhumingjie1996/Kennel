@@ -6,7 +6,7 @@ App({
       console.error('此版本不支持云函数')
     } else {
       wx.cloud.init({
-        env: 'cloud1-1gpznnevc844c075'
+        env: 'zhumingjie-wxcloud-0dmpke1424a47'
       })
     };
     // 用户入库

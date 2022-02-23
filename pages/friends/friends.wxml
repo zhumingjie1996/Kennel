@@ -1,11 +1,11 @@
 <!--pages/friends/friends.wxml-->
 <view class="{{fadeClass ? 'container fadeInDown' : 'container'}}">
-    <view class="friendsListTitle">狗子列表</view>
+    <view class="friendsListTitle">用户列表</view>
     <view class="friendsList">
         <friends-list-item wx:for="{{friendList}}" wx:for-index="index" wx:for-item="item" wx:key="index" userInfo="{{item.userInfo}}"></friends-list-item>
     </view>
     <view class="activeTitle">互动列表</view>
-    <van-cell icon="clock-o" is-link bindtap="toTimeAndDogs">
+    <!-- <van-cell icon="clock-o" is-link bindtap="toTimeAndDogs">
         <view slot="title">
             <view class="van-cell-text">几点几狗<van-tag round style="margin-left: 20rpx;" color="#000" text-color="#fff">每日</van-tag>
             </view>
@@ -15,7 +15,7 @@
         <view slot="title">
             <view class="van-cell-text">战况分析</view>
         </view>
-    </van-cell>
+    </van-cell> -->
     <!-- <van-cell icon="point-gift-o" is-link>
         <view slot="title">
             <view class="van-cell-text">匿名的投喂<van-tag round style="margin-left: 20rpx;" color="#000" text-color="#fff">随机</van-tag>
@@ -27,15 +27,15 @@
             <view class="van-cell-text">淦波的空投<van-tag round style="margin-left: 20rpx;" color="#000" text-color="#fff">随机</van-tag>
             </view>
         </view>
-    </van-cell>
-    <van-cell icon="bullhorn-o" is-link>
-        <view slot="title">
-            <view class="van-cell-text">二狗的骚话</view>
-        </view>
     </van-cell> -->
+    <van-cell icon="bullhorn-o" is-link bindtap="toTimeAndDogsNone">
+        <view slot="title">
+            <view class="van-cell-text">子悦老师的记分板</view>
+        </view>
+    </van-cell>
     <van-cell icon="flag-o" is-link bindtap="toTimeAndDogsNone">
         <view slot="title">
-            <view class="van-cell-text">线下GANK</view>
+            <view class="van-cell-text">小朱同学的表白墙</view>
         </view>
     </van-cell>
 </view>
