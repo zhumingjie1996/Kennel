@@ -56,7 +56,7 @@ Component({
       type: String,
       default: "",
       observer: function (newVal) {
-        let dateAndTimeAfterFormat = formatTime(new Date(newVal));
+        let dateAndTimeAfterFormat = this.timeFormatter(newVal);
         this.setData({
           date: dateAndTimeAfterFormat
         })
@@ -183,6 +183,7 @@ Component({
           commitId:_this.data.commitId
         }
       }).then(res=>{
+        console.log(res);
         _this.setData({
           commentList:type === 0 ? _this.data.commentList.concat(res.result.list) : res.result.list
         })
@@ -237,6 +238,52 @@ Component({
           }
         }
       })
+    },
+    timeFormatter:function(time){
+      return formatTime(new Date(time))
+    },
+    // 查看评论时间
+    operateComment:function(data){
+      console.log(data);
+      wx.showToast({
+        title: data.currentTarget.dataset.date,
+        icon:'none'
+      })
+    },
+    // 删除评论
+    deleteComment:function(data){
+      let openid = data.currentTarget.dataset.openid;
+      let commentId = data.currentTarget.dataset.id;
+      if(openid !== app.globalData.userInfo.openId){
+        return
+      }else{
+        let _this = this;
+        wx.showModal({
+          title: '提示',
+          content: '🤔你确定要删掉吗🤔',
+          success (res) {
+            if (res.confirm) {
+              wx.cloud.callFunction({
+                name:'removeSomething',
+                data:{
+                    name:'commentList',
+                    whereObj:{
+                        _id:commentId
+                    }
+                }
+            }).then(res=>{
+              wx.showToast({
+                title: '删除成功啦😉',
+                icon:'none'
+              });
+            _this.triggerEvent('deleteOver')
+            })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
     }
   }
 })
