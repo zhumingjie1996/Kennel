@@ -7,7 +7,7 @@
     </view>
     <view class="nickName_text">
       <view class="niceName">{{nickname === '' ? '匿名' : nickname}}<span class="delete" wx:if="{{showDelete}}" bind:tap="delete"></span></view>
-      <view class="text">{{textValue}}</view>
+      <view class="text"><text decode='true'>{{textValue}}</text></view>
     </view>
 
   </view>
