@@ -13,7 +13,8 @@ Page({
     nickname: 'nickname',
     avatarUrl: '',
     avatarUrlDefault: '../../assets/icons/avatar_default.png',
-    signature: ''
+    signature: '',
+    tian:0
   },
 
   test() {
@@ -103,6 +104,24 @@ Page({
     })
   },
 
+  // 获取赞和被赞的次数
+  getTian(){
+    wx.cloud.callFunction({
+      name: 'getSomething',
+      data: {
+        name:'operateCommits',
+        whereObj:{
+          openid: app.globalData.openid
+        }
+      }
+    })
+    .then(res => {
+      this.setData({
+        tian:res.result.data.length
+      })
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -115,6 +134,7 @@ Page({
    */
   onShow: function () {
     this.addFade();
+    this.getTian();
   },
 
   /**
@@ -128,7 +148,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log('123')
+
   },
 
   /**

@@ -26,7 +26,7 @@
       </view>
       <view class="socialInfoItem">
         <text class="socialInfoItemTitle">赞</text>
-        <text class="socialInfoItemNum">0</text>
+        <text class="socialInfoItemNum">{{tian}}</text>
       </view>
       <!-- <view class="socialInfoItem">
         <text class="socialInfoItemTitle">啃人</text>

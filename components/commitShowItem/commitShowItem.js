@@ -21,7 +21,7 @@ Component({
         });
         // 如果openid和当前登陆的openid相同，则显示删除按钮
         _this.setData({
-          showDelete:newVal === app.globalData.userInfo.openId
+          showDelete: newVal === app.globalData.userInfo.openId
         })
       }
     },
@@ -69,7 +69,7 @@ Component({
     commitId: {
       type: String,
       default: '',
-      observer:function () {
+      observer: function () {
         this.getComments(0);
       }
     }
@@ -85,9 +85,9 @@ Component({
     date: "",
     tianNum: 0,
     kenNum: 0,
-    commentList:[],
-    commontValue:'',
-    showDelete:false,
+    commentList: [],
+    commontValue: '',
+    showDelete: false,
   },
   lifetimes: {
     attached: function () {
@@ -149,17 +149,17 @@ Component({
     },
     tian: function () {
       let _this = this;
-      _this.operateCommit('tian').then(()=>{
+      _this.operateCommit('tian').then(() => {
         _this.setData({
-          tianNum:_this.data.tianNum + 1
+          tianNum: _this.data.tianNum + 1
         })
       })
     },
     ken: function () {
       let _this = this;
-      _this.operateCommit('ken').then(()=>{
+      _this.operateCommit('ken').then(() => {
         _this.setData({
-          kenNum:_this.data.kenNum + 1
+          kenNum: _this.data.kenNum + 1
         })
       })
     },
@@ -174,22 +174,21 @@ Component({
         }
       })
     },
-    getComments:function(type){
+    getComments: function (type) {
       // 获取当前动态的评论列表
       let _this = this;
       wx.cloud.callFunction({
-        name:'getComment',
-        data:{
-          commitId:_this.data.commitId
+        name: 'getComment',
+        data: {
+          commitId: _this.data.commitId
         }
-      }).then(res=>{
-        console.log(res);
+      }).then(res => {
         _this.setData({
-          commentList:type === 0 ? _this.data.commentList.concat(res.result.list) : res.result.list
+          commentList: type === 0 ? _this.data.commentList.concat(res.result.list) : res.result.list
         })
       })
     },
-    confirmComment:function(e){
+    confirmComment: function (e) {
       let _this = this;
       wx.showLoading();
       let commentValue = e.detail.value;
@@ -197,87 +196,139 @@ Component({
         commentValue
       })
       wx.cloud.callFunction({
-        name:'addComment',
-        data:{
-          value:_this.data.commentValue,
-          openid:app.globalData.userInfo.openId,
+        name: 'addComment',
+        data: {
+          value: _this.data.commentValue,
+          openid: app.globalData.userInfo.openId,
           commitId: _this.data.commitId
         }
-      }).then(()=>{
+      }).then(() => {
         _this.getComments(1);
         _this.setData({
-          commentValue:'',
+          commentValue: '',
         });
         wx.hideLoading()
       })
     },
-    delete(){
+    delete() {
       let _this = this;
       wx.showModal({
         title: '提示',
         content: '🤔你确定要删掉吗🤔',
-        success (res) {
+        success(res) {
           if (res.confirm) {
+            console.log(_this.data.commitId)
             wx.cloud.callFunction({
-              name:'removeSomething',
-              data:{
-                  name:'commits',
-                  whereObj:{
-                      _id:_this.data.commitId
-                  }
+              name: 'getSomething',
+              data: {
+                name: 'commits',
+                whereObj: {
+                  _id: _this.data.commitId
+                }
               }
-          }).then(res=>{
-            wx.showToast({
-              title: '删除成功啦😉',
-              icon:'none'
-            });
-          _this.triggerEvent('deleteOver')
-          })
+            })
+            .then(res=>{
+              console.log(res)
+              let fileList = [];
+              res.result.data[0].fileList.map(item=>{
+                fileList.push(item.fileID);
+              });
+              return fileList
+            })
+            .then(res=>{
+              console.log(res)
+              wx.cloud.deleteFile(
+                {
+                    fileList:res,
+                }
+              );
+            })
+          //   // 1.删除当前动态
+            // 2.删除点赞
+            // 3.删除相关的评论
+            // 4.删除存储的照片
+            wx.cloud.callFunction({
+                name: 'removeSomething',
+                data: {
+                  name: 'commits',
+                  whereObj: {
+                    _id: _this.data.commitId
+                  }
+                }
+              })
+              .then(res => {
+                wx.cloud.callFunction({
+                  name: 'removeSomething',
+                  data: {
+                    name: 'operateCommits',
+                    whereObj: {
+                      commitId: _this.data.commitId
+                    }
+                  }
+                })
+              })
+              .then(res => {
+                wx.cloud.callFunction({
+                  name: 'removeSomething',
+                  data: {
+                    name: 'commentList',
+                    whereObj: {
+                      commitId: _this.data.commitId
+                    }
+                  }
+                })
+              })
+              .then(res => {
+                wx.showToast({
+                  title: '删除成功啦😉',
+                  icon: 'none'
+                });
+                _this.triggerEvent('deleteOver')
+              })
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
         }
       })
     },
-    timeFormatter:function(time){
+    timeFormatter: function (time) {
       return formatTime(new Date(time))
     },
     // 查看评论时间
-    operateComment:function(data){
-      console.log(data);
+    operateComment: function (data) {
       wx.showToast({
         title: data.currentTarget.dataset.date,
-        icon:'none'
+        icon: 'none'
       })
     },
     // 删除评论
-    deleteComment:function(data){
+    deleteComment: function (data) {
       let openid = data.currentTarget.dataset.openid;
       let commentId = data.currentTarget.dataset.id;
-      if(openid !== app.globalData.userInfo.openId){
+      if (openid !== app.globalData.userInfo.openId) {
         return
-      }else{
+      } else {
         let _this = this;
         wx.showModal({
           title: '提示',
           content: '🤔你确定要删掉吗🤔',
-          success (res) {
+          success(res) {
             if (res.confirm) {
               wx.cloud.callFunction({
-                name:'removeSomething',
-                data:{
-                    name:'commentList',
-                    whereObj:{
-                        _id:commentId
-                    }
+                name: 'removeSomething',
+                data: {
+                  name: 'commentList',
+                  whereObj: {
+                    _id: commentId
+                  }
                 }
-            }).then(res=>{
-              wx.showToast({
-                title: '删除成功啦😉',
-                icon:'none'
-              });
-            _this.triggerEvent('deleteOver')
-            })
+              }).then(res => {
+                wx.showToast({
+                  title: '删除成功啦😉',
+                  icon: 'none'
+                });
+                _this.triggerEvent('deleteOver')
+              })
             } else if (res.cancel) {
               console.log('用户点击取消')
             }
