@@ -1,5 +1,9 @@
 // pages/write/write.js
 var RemoveFade = require('../../behaviors/removeFade/removeFade.js');
+var app = getApp();
+import {
+  formatTime
+} from '../../utils/util.js';
 Page({
   behaviors: [RemoveFade],
   /**
@@ -8,7 +12,8 @@ Page({
   data: {
     fileList: [],
     location: "",
-    textValue: ""
+    textValue: "",
+    toName:'',
   },
 
   beforeRead(event) {
@@ -111,7 +116,21 @@ Page({
               fileList: [],
               location: "",
               textValue: "",
+            });
+            // 消息推送
+            let openIdList = app.globalData.openIdList;
+            let openid = app.globalData.userInfo.openId;
+            let anotherOpenid = '';
+            openIdList.map((item,index)=>{
+              if(openid !== item.openid){
+                anotherOpenid = item.openid;
+              }else{
+                _this.setData({
+                  toName:item.name
+                })
+              }
             })
+            _this.send(anotherOpenid);
           }
         });
       })
@@ -123,7 +142,23 @@ Page({
         console.log(e);
       });
   },
-
+    //发送模板消息给指定的openId用户
+    send:function(openid) {
+      let _this = this;
+      wx.cloud.callFunction({
+        name: "message",
+        data: {
+          openid: openid,
+          title:'😘😎😊😉😍',
+          name:_this.data.toName,
+          time:_this.formatTime(new Date(time)),
+        }
+      }).then(res => {
+        console.log("发送通知成功", res)
+      }).catch(res => {
+        console.log("发送通知失败", res)
+      });
+    },
   /**
    * 生命周期函数--监听页面加载
    */

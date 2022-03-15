@@ -41,6 +41,7 @@ App({
   globalData: {
     userInfo: {
       openId: ''
-    }
+    },
+    openIdList:[{name:'张子悦',openid:'o9v6H5ABKYC6huP9uvO7AAT511Tc'},{name:'朱明杰',openid:'o9v6H5EdPX42x3yWJUrZhyjIOhOI'}],
   }
 })

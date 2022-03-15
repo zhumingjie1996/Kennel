@@ -37,7 +37,7 @@ Page({
   },
   onLoad() {
     let _this = this;
-    _this.getCommits()
+    _this.getCommits();
   },
   onShow: function () {
     this.addFade();

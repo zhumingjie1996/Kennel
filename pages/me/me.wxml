@@ -34,4 +34,7 @@
       </view> -->
     </view>
   </view>
+  <view>
+    <van-cell title="消息订阅" is-link bindtap="openMessage"/>
+  </view>
 </view>

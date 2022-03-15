@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "van-tag": "@vant/weapp/tag/index"
+    "van-tag": "@vant/weapp/tag/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
   },
   "navigationBarBackgroundColor": "#F5F5F5",
   "backgroundColor":"#fff"
