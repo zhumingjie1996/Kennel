@@ -24,12 +24,6 @@
                 "selectedIconPath": "assets/icons/integral-fill.png"
             },
             {
-                "pagePath": "pages/write/write",
-                "text": "发表",
-                "iconPath": "assets/icons/comments.png",
-                "selectedIconPath": "assets/icons/comments-fill.png"
-            },
-            {
                 "pagePath": "pages/friends/friends",
                 "text": "互动",
                 "iconPath": "assets/icons/Customer-management.png",

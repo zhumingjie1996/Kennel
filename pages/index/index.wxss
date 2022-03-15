@@ -25,10 +25,95 @@
 
 .bottomTip{
   width: 100%;
-  height: 80rpx;
-  padding: 20rpx;
+  height: 110rpx;
+  padding: 30rpx;
   text-align: center;
   font-size: 22rpx;
   color: rgb(221, 221, 221);
   box-sizing: border-box;
+}
+
+.floatOperate{
+  position: fixed;
+  right: 20rpx;
+  bottom: 20rpx;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  background-color: #000;
+  opacity: .6;
+  transition: all .3s ease-in-out;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.floatOperateClick{
+  opacity: 1;
+  width: calc(100vw - 40rpx);
+}
+
+.float_button_container{
+  position: absolute;
+  left: 0rpx;
+  bottom: 0rpx;
+  background-color: #000;
+  width: calc(100vw - 110rpx);
+  height: 70rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.operateIcon{
+  width: 30%;
+  height: 70rpx;
+}
+
+.float_close{
+  position: absolute;
+  right: 0rpx;
+  bottom: 0rpx;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  background-color: #000;
+  transform: rotate(0deg);
+  transition: all .3s ease-in-out;
+}
+
+.float_closeClick{
+  position: absolute;
+  right: 0rpx;
+  bottom: 0rpx;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  background-color: #000;
+  transform: rotate(45deg);
+  transition: all .3s ease-in-out;
+}
+
+.float_close::before{
+  content: '';
+  width: 30rpx;
+  height: 5rpx;
+  border-radius: 5rpx;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.float_close::after{
+  content: '';
+  width: 5rpx;
+  height: 30rpx;
+  border-radius: 5rpx;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
