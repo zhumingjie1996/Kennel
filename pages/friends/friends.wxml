@@ -28,7 +28,7 @@
             </view>
         </view>
     </van-cell> -->
-    <van-cell icon="bullhorn-o" is-link bindtap="toTimeAndDogsNone">
+    <van-cell icon="bullhorn-o" is-link bindtap="toScore">
         <view slot="title">
             <view class="van-cell-text">子悦老师的记分板</view>
         </view>

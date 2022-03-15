@@ -2,7 +2,7 @@
 import * as echarts from '../../ec-canvas/echarts.js';
 const gaugeData = [{
     value: (0 / 5) * 100,
-    name: '参战率',
+    name: '得分',
     title: {
         offsetCenter: ['0%', '-20%']
     },
@@ -68,7 +68,7 @@ function initChart(canvas, width, height, dpr) {
                 borderColor: '#000',
                 borderRadius: 20,
                 borderWidth: 1,
-                formatter: '{value}%'
+                formatter: '{value}'
             }
         }]
     };
@@ -105,7 +105,7 @@ Component({
 
     observers: {
         'chartData': function (val) {
-            gaugeData[0].value = (val / 5) * 100;
+            gaugeData[0].value = val;
             chart.setOption({
                 series: [{
                     data: gaugeData

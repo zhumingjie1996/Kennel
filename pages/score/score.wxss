@@ -1,0 +1,103 @@
+/* pages/score/score.wxss */
+/* pages/timeAndDogs/timeAndDogs.wxss */
+
+.chart{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+.button{
+  width: 50%;
+  margin-left: 25%;
+}
+
+.userList{
+  width: 100%;
+  margin-top: 80rpx;
+  box-sizing: border-box;
+}
+
+.userList_zanxiu{
+  margin-top: 10rpx;
+}
+
+.userListTitle{
+  padding-left: 20rpx;
+  border-left: 10rpx #000 solid;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-weight: 700;
+}
+
+.notFight{
+  width: 100%;
+  text-align: center;
+  color: #7a7a7a;
+  font-size: 22rpx;
+  margin-top: 20rpx;
+  text-decoration:underline
+}
+
+.userListInner{
+  width: 100%;
+  padding: 15rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left;
+}
+
+.avatarImg{
+  width: 80rpx;
+  height: 80rpx;
+  border: 1rpx #000 solid;
+  border-radius: 50%;
+}
+
+.userListInnerItem{
+  width: 80rpx;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10rpx;
+}
+
+.userListInnerItem_xiu{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10rpx;
+}
+
+.time,
+.reason{
+  font-size: 25rpx;
+  font-weight: normal;
+}
+
+.reason{
+  margin-left: 20rpx;
+}
+
+.xiuReasonTitle{
+  display: block;
+  padding: 20rpx;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+}
+
+.xiuReasonCommit{
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 30rpx;
+}

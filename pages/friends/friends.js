@@ -62,9 +62,9 @@ Page({
       name:"getUser"
     })
   },
-  toTimeAndDogs:function(){
+  toScore:function(){
     wx.navigateTo({
-      url: '/pages/timeAndDogs/timeAndDogs',
+      url: '/pages/score/score',
     })
   }
 })
