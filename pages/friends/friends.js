@@ -63,8 +63,6 @@ Page({
     })
   },
   toScore:function(){
-    wx.navigateTo({
-      url: '/pages/score/score',
-    })
+    this.toTimeAndDogsNone()
   }
 })
