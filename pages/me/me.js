@@ -121,7 +121,18 @@ Page({
       })
     })
   },
-
+  openMessage(){
+    //消息订阅
+    wx.requestSubscribeMessage({
+      tmplIds: ["UmONsbNHnNGVMR_rFlvtBRplnxD8mz25vMfEc5BMwkg"],
+      success(res) {
+        console.log(res);
+      },
+      fail(res){
+        console.log(res);
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

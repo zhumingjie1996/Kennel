@@ -1,19 +1,15 @@
-<view class="{{fadeClass ? 'container fadeInDown' : 'container'}}">
+<view class="{{fadeClass ? 'container fadeInDown' : 'container'}}" bindtouchstart="closeOperate">
   <van-notify id="van-notify" />
   <van-skeleton wx:if="{{commitList.length === 0}}" wx:for="{{[1,2,3,4,5]}}" wx:for-index="index" wx:key="index" title avatar row="5" />
-  <commit-show
-    wx:for="{{commitList}}" 
-    wx:for-index="index" 
-    wx:fot-item="item"
-    wx:key="index"
-    fileList="{{item.fileList}}"
-    location="{{item.location}}"
-    textValue="{{item.textValue}}"
-    dateAndTime="{{item.date}}"
-    openid="{{item.userInfo.openId}}"
-    commitId="{{item._id}}"
-    bind:deleteOver="deleteOver"
-    >
+  <commit-show wx:for="{{commitList}}" wx:for-index="index" wx:fot-item="item" wx:key="index" fileList="{{item.fileList}}" location="{{item.location}}" textValue="{{item.textValue}}" dateAndTime="{{item.date}}" openid="{{item.userInfo.openId}}" commitId="{{item._id}}" bind:deleteOver="deleteOver">
   </commit-show>
   <view wx:if="{{commitList.length >= 3}}" class="bottomTip">{{bottomTip}}</view>
+</view>
+<view class="{{isOperate ? 'floatOperate floatOperateClick' : 'floatOperate'}}" bindtap="operate" bindlongtap="toEdit">
+  <view class="float_button_container">
+    <van-icon class="operateIcon" name="edit" color="#ffffff" size="40rpx" bindtap="operateButton" data-operateName="edit" />
+    <van-icon class="operateIcon" name="back-top" color="#ffffff" size="40rpx" bindtap="operateButton" data-operateName="top" />
+    <van-icon class="operateIcon" name="replay" color="#ffffff" size="40rpx" bindtap="operateButton" data-operateName="refresh"/>
+  </view>
+  <view class="{{isOperate ? 'float_close float_closeClick' : 'float_close'}}"></view>
 </view>

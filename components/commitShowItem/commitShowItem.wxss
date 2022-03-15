@@ -23,8 +23,8 @@
 }
 
 .avatar{
-  width: 100rpx;
-  height: 100rpx;
+  width: 60rpx;
+  height: 60rpx;
   overflow: hidden;
   margin-right: 30rpx;
   border-radius: 50%;
@@ -32,12 +32,12 @@
 }
 
 .avatarImg{
-  width: 100rpx;
-  height: 100rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 
 .nickName_text{
-  width: 80%;
+  width: 85%;
 }
 
 .niceName{
@@ -89,29 +89,30 @@
 }
 
 .imgs{
-  width: 75%;
+  width: 80%;
   overflow: hidden;
   height: auto;
-  margin-left: 132rpx;
+  margin-left: 96rpx;
   margin-top: 20rpx;
 }
 
 .commitImgs{
   display: inline-block;
-  width: 160rpx;
-  height: 160rpx;
+  width: 180rpx;
+  height: 180rpx;
   margin-right: 10rpx;
 }
 
 .commitImgsInner{
   width: 100%;
   height: 100%;
+  border-radius: 8rpx;
 }
 
 .operate,
 .time{
-  width: 80%;
-  margin-left: 18.5%;
+  width: 85%;
+  margin-left: 13.5%;
   margin-top: 20rpx;
   margin-bottom: 20rpx;
   display: flex;
@@ -132,7 +133,7 @@
   justify-content: space-between;
 }
 .operateItem{
-  margin-right: 35rpx;
+  margin-right: 16rpx;
 }
 
 .kenIcon{
@@ -148,9 +149,9 @@
 }
 
 .comment{
-  width: 68%;
+  width: 75%;
   height: 50rpx;
-  margin-left: 18.5%;
+  margin-left: 13.5%;
   font-size: 25rpx;
   background: rgb(247, 247, 247);
   padding: 0 20rpx;
@@ -158,9 +159,9 @@
 }
 
 .commentList{
-  width: 68%;
+  width: 81%;
   padding: 0 20rpx;
-  margin-left: 18.5%;
+  margin-left: 11.5%;
   font-size: 25rpx;
 }
 

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "pages": [
     "pages/index/index",
     "pages/write/write",
@@ -44,4 +45,44 @@
       }
     ]
   }
+=======
+    "pages": [
+        "pages/index/index",
+        "pages/write/write",
+        "pages/friends/friends",
+        "pages/me/me",
+        "pages/signature/signature",
+        "pages/timeAndDogs/timeAndDogs"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "POKE BALL",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "selectedColor": "#000000",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "动态",
+                "iconPath": "assets/icons/integral.png",
+                "selectedIconPath": "assets/icons/integral-fill.png"
+            },
+            {
+                "pagePath": "pages/friends/friends",
+                "text": "互动",
+                "iconPath": "assets/icons/Customer-management.png",
+                "selectedIconPath": "assets/icons/Customer-management-fill.png"
+            },
+            {
+                "pagePath": "pages/me/me",
+                "text": "我的",
+                "iconPath": "assets/icons/bussiness-man.png",
+                "selectedIconPath": "assets/icons/bussiness-man-fill.png"
+            }
+        ]
+    }
+>>>>>>> e2aa6999f00149563c667cf66100cbd551ef5d2a
 }

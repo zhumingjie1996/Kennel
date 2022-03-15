@@ -6,7 +6,8 @@ Page({
   data: {
     pageNum: 0, //当前页码
     commitList: [],
-    bottomTip: '你已经扒拉到底了～'
+    bottomTip: '你已经扒拉到底了～',
+    isOperate: false,
   },
   getCommits: function () {
     let _this = this;
@@ -26,23 +27,71 @@ Page({
         console.log(error);
       })
   },
-  deleteOver:function(){
+  deleteOver: function () {
     let _this = this;
     _this.setData({
-      commitList:[],
+      commitList: [],
       pageNum: 0
     });
     _this.getCommits();
   },
   onLoad() {
     let _this = this;
-    _this.getCommits()
+    _this.getCommits();
   },
   onShow: function () {
     this.addFade();
   },
-  onHide(){
+  onHide() {
     this.removeFade();
+  },
+  operate() {
+    this.setData({
+      isOperate: !this.data.isOperate
+    })
+    wx.vibrateShort({
+      type: 'light'
+    });
+  },
+  toEdit() {
+    // 直接去编辑
+    wx.vibrateShort({type: 'heavy'});
+    this.setData({
+      isOperate:false
+    })
+    wx.navigateTo({
+      url: '../../pages/write/write',
+    })
+  },
+  operateButton(e) {
+    let operateName = e.currentTarget.dataset.operatename;
+    if (operateName === 'edit') {
+      // 编辑
+      wx.navigateTo({
+        url: '../../pages/write/write',
+      })
+    } else if (operateName === 'top') {
+      // 回到顶部
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300,
+        success: function () {
+          wx.showToast({
+            title: '已置顶😎',
+            icon: "none"
+          })
+        }
+      })
+    } else if (operateName === 'refresh') {
+      // 刷新页面
+      wx.startPullDownRefresh()
+    }
+  },
+
+  closeOperate() {
+    this.setData({
+      isOperate: false
+    })
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -50,7 +99,7 @@ Page({
   onPullDownRefresh: function () {
     let _this = this;
     _this.setData({
-      commitList:[],
+      commitList: [],
       pageNum: 0
     });
     _this.getCommits();
@@ -58,7 +107,7 @@ Page({
       success: (res) => {
         wx.showToast({
           title: '刷新成功😎',
-          icon:'none'
+          icon: 'none'
         })
       },
     })

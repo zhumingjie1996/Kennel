@@ -152,7 +152,7 @@ Component({
       _this.operateCommit('tian').then(() => {
         _this.setData({
           tianNum: _this.data.tianNum + 1
-        })
+        });
       })
     },
     ken: function () {
@@ -219,31 +219,29 @@ Component({
           if (res.confirm) {
             console.log(_this.data.commitId)
             wx.cloud.callFunction({
-              name: 'getSomething',
-              data: {
-                name: 'commits',
-                whereObj: {
-                  _id: _this.data.commitId
+                name: 'getSomething',
+                data: {
+                  name: 'commits',
+                  whereObj: {
+                    _id: _this.data.commitId
+                  }
                 }
-              }
-            })
-            .then(res=>{
-              console.log(res)
-              let fileList = [];
-              res.result.data[0].fileList.map(item=>{
-                fileList.push(item.fileID);
-              });
-              return fileList
-            })
-            .then(res=>{
-              console.log(res)
-              wx.cloud.deleteFile(
-                {
-                    fileList:res,
-                }
-              );
-            })
-          //   // 1.删除当前动态
+              })
+              .then(res => {
+                console.log(res)
+                let fileList = [];
+                res.result.data[0].fileList.map(item => {
+                  fileList.push(item.fileID);
+                });
+                return fileList
+              })
+              .then(res => {
+                console.log(res)
+                wx.cloud.deleteFile({
+                  fileList: res,
+                });
+              })
+            //   // 1.删除当前动态
             // 2.删除点赞
             // 3.删除相关的评论
             // 4.删除存储的照片
