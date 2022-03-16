@@ -1,7 +1,7 @@
 // components/charts/gauge/gauge.js
 import * as echarts from '../../ec-canvas/echarts.js';
 const gaugeData = [{
-    value: (0 / 5) * 100,
+    value: (0 / 5) * 1000,
     name: '本月得分',
     title: {
         offsetCenter: ['0%', '-20%']
@@ -12,6 +12,7 @@ const gaugeData = [{
     }
 }];
 let chart;
+
 function initChart(canvas, width, height, dpr) {
     chart = echarts.init(canvas, null, {
         width: width,
@@ -27,6 +28,8 @@ function initChart(canvas, width, height, dpr) {
             pointer: {
                 show: false
             },
+            max:1000,
+            min:0,
             progress: {
                 show: true,
                 overlap: false,
@@ -105,12 +108,15 @@ Component({
 
     observers: {
         'chartData': function (val) {
+            console.log(val)
             gaugeData[0].value = val;
-            chart.setOption({
-                series: [{
-                    data: gaugeData
-                }]
-            });
+            if (chart) {
+                chart.setOption({
+                    series: [{
+                        data: gaugeData
+                    }]
+                });
+            }
         }
     },
     /**

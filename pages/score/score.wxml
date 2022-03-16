@@ -1,5 +1,6 @@
 <!--pages/score/score.wxml-->
 <!--pages/timeAndDogs/timeAndDogs.wxml-->
+<wxs module="filter" src="./score.wxs"></wxs>
 <view class="container">
     <view class="chart">
         <gauge-chart chartData="{{total}}"></gauge-chart>
@@ -12,29 +13,25 @@
 
     <view class="userList" wx:if="{{notXiuList.length !== 0}}">
         <view class="userListTitle">本月加分列表</view>
-        <view class="userListInner">
-            <view class="userListInnerItem" wx:for="{{notXiuList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
-                <image class="avatarImg" wx:if="{{item.avatarUrl !== ''}}" src="{{item.avatarUrl}}"></image>
-                <image wx:else class="avatarImg" style="background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
-                <text class="time">{{item.time}}</text>
-            </view>
-        </view>
+        <!-- <view class="userListInner"> -->
+            <van-cell-group border="{{false}}" inset>
+                <van-cell wx:for="{{addList}}" wx:for-index="index" wx:for-item="item" wx:key="index" title="{{item.reason}}" value="+{{item.score}}" label="{{filter.formater(item.date)}}" />
+            </van-cell-group>
+        <!-- </view> -->
     </view>
     <view class="userList userList_zanxiu" wx:if="{{xiuList.length !== 0}}">
         <view class="userListTitle">本月扣分列表</view>
-        <view class="userListInner">
-            <view class="userListInnerItem_xiu" wx:for="{{xiuList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
-                <image class="avatarImg" wx:if="{{item.avatarUrl !== ''}}" src="{{item.avatarUrl}}"></image>
-                <image wx:else class="avatarImg" style="background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
-                <text class="reason">{{item.xiuReason}}</text>
-            </view>
-        </view>
+        <!-- <view class="userListInner"> -->
+            <van-cell-group border="{{false}}" inset>
+                <van-cell wx:for="{{delList}}" wx:for-index="index" wx:for-item="item" wx:key="index" title="{{item.reason}}" value="-{{item.score}}" label="{{filter.formater(item.date)}}" />
+            </van-cell-group>
+        <!-- </view> -->
     </view>
     <van-popup class="xiuReasonPopup" show="{{ addReasonShow }}" round position="bottom" custom-style="height: 50%" close-on-click-overlay safe-area-inset-bottom="true" lock-scroll="true" z-index='{{99999}}' overlay bind:close="onCloseAddReason">
         <text class="xiuReasonTitle">加分设置</text>
         <van-field class="xiuReasonPopupInput" model:value="{{ reason }}" placeholder="自定义输入（最多20字）" maxlength="20" border="{{ true }}" bind:change="inputXiuReason" />
         <van-cell title="分值">
-            <van-stepper model:value="{{ addScore }}" min="1" max="10" integer bind:change="onAddScoreChange" />
+            <van-stepper model:value="{{ addScore }}" min="1" max="100" integer bind:change="onAddScoreChange" />
         </van-cell>
         <view class="xiuReasonCommit">
             <van-button class="commit" type="primary" block size="small" color="#000" bindtap="commitScore">确定</van-button>
@@ -52,7 +49,7 @@
         </van-radio-group> -->
         <van-field class="xiuReasonPopupInput" model:value="{{ reason }}" placeholder="自定义输入（最多20字）" maxlength="20" border="{{ true }}" bind:change="inputXiuReason" />
         <van-cell title="分值">
-            <van-stepper model:value="{{ delScore }}" min="-10" max="-1" integer bind:change="onDelScoreChange" />
+            <van-stepper model:value="{{ delScore }}" min="-100" max="-1" integer bind:change="onDelScoreChange" />
         </van-cell>
         <view class="xiuReasonCommit">
             <van-button class="commit" type="primary" block size="small" color="#000" bindtap="commitScore">确定</van-button>

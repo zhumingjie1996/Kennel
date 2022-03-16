@@ -11,5 +11,6 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-field": "@vant/weapp/field/index",
     "van-stepper": "@vant/weapp/stepper/index"
-  }
+  },
+  "backgroundColor":"#fff"
 }

@@ -23,6 +23,7 @@
 
 .userList_zanxiu{
   margin-top: 10rpx;
+  margin-bottom: 50rpx;
 }
 
 .userListTitle{

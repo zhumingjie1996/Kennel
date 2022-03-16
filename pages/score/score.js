@@ -10,7 +10,9 @@ Page({
     total: 0,
     addScore: 5,
     delScore:-5,
-    reason: ""
+    reason: "",
+    addList:[],
+    delList:[],
   },
 
   /**
@@ -36,8 +38,11 @@ Page({
       name: 'getNumberStatistic',
     }).then(res => {
       let item = res.result.data[0];
+      console.log(res.result.data)
       _this.setData({
-        total: item.total
+        total: item.total,
+        addList: item.add.reverse(),
+        delList: item.del.reverse()
       })
     })
   },
@@ -120,6 +125,11 @@ Page({
     _this.setData({
       delScore: e.detail
     })
+  },
+
+  // 格式化时间
+  formatTimer(time){
+    return formatTime(time)
   },
 
   /**
