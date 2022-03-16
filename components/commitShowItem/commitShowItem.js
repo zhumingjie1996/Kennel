@@ -207,7 +207,21 @@ Component({
         _this.setData({
           commentValue: '',
         });
-        wx.hideLoading()
+        wx.hideLoading();
+        // 消息推送
+        // let openIdList = app.globalData.openIdList;
+        // let openid = app.globalData.userInfo.openId;
+        // let anotherOpenid = '';
+        // openIdList.map((item, index) => {
+        //   if (openid !== item.openid) {
+        //     anotherOpenid = item.openid;
+        //   } else {
+        //     _this.setData({
+        //       toName: item.name
+        //     })
+        //   }
+        // });
+        // _this.send(anotherOpenid);
       })
     },
     delete() {
@@ -333,6 +347,23 @@ Component({
           }
         })
       }
-    }
+    },
+    //发送模板消息给指定的openId用户
+    // send: function (openid) {
+    //   let _this = this;
+    //   console.log(openid, _this.data.toName, formatTime(new Date()))
+    //   wx.cloud.callFunction({
+    //     name: "commentMessage",
+    //     data: {
+    //       openid: openid,
+    //       tips: '有新的评论啦！',
+    //       time: formatTime(new Date()),
+    //     }
+    //   }).then(res => {
+    //     console.log("发送通知成功", res)
+    //   }).catch(res => {
+    //     console.log("发送通知失败", res)
+    //   });
+    // },
   }
 })

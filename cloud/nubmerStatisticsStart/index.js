@@ -5,19 +5,19 @@ cloud.init();
 
 const db = cloud.database();
 
-// 每天九点定时开启新的几点几狗
-
 // 云函数入口函数
 exports.main = async (event, context) => {
-    db.collection('timeAndNumber').where({laster:true}).update({
+    db.collection('score').where({isLaster:true}).update({
         data:{
-            laster:false
+            isLaster:false
         }
-    })
-    db.collection('timeAndNumber').add({
-        data:{
-            isActive:true,
-            laster:true
-        }
+    }).then(()=>{
+        db.collection('score').add({
+            data:{
+                isLaster:true,
+                date:db.serverDate(),
+                total:60
+            }
+        })
     })
 }

@@ -2,16 +2,16 @@
 <!--pages/timeAndDogs/timeAndDogs.wxml-->
 <view class="container">
     <view class="chart">
-        <gauge-chart chartData="{{notXiuList.length}}"></gauge-chart>
+        <gauge-chart chartData="{{total}}"></gauge-chart>
     </view>
     <view class="button">
-        <van-button class="commit" type="primary" block size="normal" round color="{{'#000'}}" bindtap="removeNowInfo">{{'加分'}}</van-button>
+        <van-button class="commit" type="primary" block size="normal" round color="{{'#000'}}" bindtap="addScore">{{'加分'}}</van-button>
     </view>
     <!-- <van-button class="commit" type="primary" block size="mini" round color="{{'#000'}}" bindtap="removeNowInfo">{{'扣分'}}</van-button> -->
-    <view class="notFight" bindtap="commitXiu">扣分</view>
+    <view class="notFight" bindtap="delScore">扣分</view>
 
     <view class="userList" wx:if="{{notXiuList.length !== 0}}">
-        <view class="userListTitle">参战列表</view>
+        <view class="userListTitle">本月加分列表</view>
         <view class="userListInner">
             <view class="userListInnerItem" wx:for="{{notXiuList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
                 <image class="avatarImg" wx:if="{{item.avatarUrl !== ''}}" src="{{item.avatarUrl}}"></image>
@@ -21,7 +21,7 @@
         </view>
     </view>
     <view class="userList userList_zanxiu" wx:if="{{xiuList.length !== 0}}">
-        <view class="userListTitle">暂休列表</view>
+        <view class="userListTitle">本月扣分列表</view>
         <view class="userListInner">
             <view class="userListInnerItem_xiu" wx:for="{{xiuList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
                 <image class="avatarImg" wx:if="{{item.avatarUrl !== ''}}" src="{{item.avatarUrl}}"></image>
@@ -30,19 +30,32 @@
             </view>
         </view>
     </view>
+    <van-popup class="xiuReasonPopup" show="{{ addReasonShow }}" round position="bottom" custom-style="height: 50%" close-on-click-overlay safe-area-inset-bottom="true" lock-scroll="true" z-index='{{99999}}' overlay bind:close="onCloseAddReason">
+        <text class="xiuReasonTitle">加分设置</text>
+        <van-field class="xiuReasonPopupInput" model:value="{{ reason }}" placeholder="自定义输入（最多20字）" maxlength="20" border="{{ true }}" bind:change="inputXiuReason" />
+        <van-cell title="分值">
+            <van-stepper model:value="{{ addScore }}" min="1" max="10" integer bind:change="onAddScoreChange" />
+        </van-cell>
+        <view class="xiuReasonCommit">
+            <van-button class="commit" type="primary" block size="small" color="#000" bindtap="commitScore">确定</van-button>
+        </view>
+    </van-popup>
 
-    <van-popup class="xiuReasonPopup" show="{{ xiuReasonShow }}" round position="bottom" custom-style="height: 70%" close-on-click-overlay safe-area-inset-bottom="true" lock-scroll="true" z-index='{{99999}}' overlay bind:close="onCloseXiuReason">
-        <text class="xiuReasonTitle">选择理由</text>
-        <van-radio-group border="{{false}}" class="xiuReasonPopupRadio" value="{{ reasonRadio }}" bind:change="onXiuListRadioChange">
+    <van-popup class="xiuReasonPopup" show="{{ delReasonShow }}" round position="bottom" custom-style="height: 50%" close-on-click-overlay safe-area-inset-bottom="true" lock-scroll="true" z-index='{{99999}}' overlay bind:close="onCloseDelReason">
+        <text class="xiuReasonTitle">扣分设置</text>
+        <!-- <van-radio-group border="{{false}}" class="xiuReasonPopupRadio" value="{{ reasonRadio }}" bind:change="onXiuListRadioChange">
             <van-cell-group border="{{false}}">
                 <van-cell wx:for="{{xiuReasonList}}" wx:for-item="item" wx:for-index="index" wx:key="index" title="{{item}}" clickable data-name="{{item}}" bind:click="xiuReasonOnClick">
                     <van-radio checked-color='#000' slot="right-icon" name="{{item}}" />
                 </van-cell>
             </van-cell-group>
-        </van-radio-group>
-        <van-field class="xiuReasonPopupInput" model:value="{{ xiuReasonInputValue }}" placeholder="自定义输入（最多20字）" maxlength="20" border="{{ true }}" bind:change="inputXiuReason" />
+        </van-radio-group> -->
+        <van-field class="xiuReasonPopupInput" model:value="{{ reason }}" placeholder="自定义输入（最多20字）" maxlength="20" border="{{ true }}" bind:change="inputXiuReason" />
+        <van-cell title="分值">
+            <van-stepper model:value="{{ delScore }}" min="-10" max="-1" integer bind:change="onDelScoreChange" />
+        </van-cell>
         <view class="xiuReasonCommit">
-            <van-button class="commit" type="primary" block size="small" color="#000" bindtap="commitXiuReason">确定</van-button>
+            <van-button class="commit" type="primary" block size="small" color="#000" bindtap="commitScore">确定</van-button>
         </view>
     </van-popup>
 </view>

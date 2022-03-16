@@ -124,7 +124,7 @@ Page({
   openMessage(){
     //消息订阅
     wx.requestSubscribeMessage({
-      tmplIds: ["UmONsbNHnNGVMR_rFlvtBRplnxD8mz25vMfEc5BMwkg"],
+      tmplIds: ["UmONsbNHnNGVMR_rFlvtBRplnxD8mz25vMfEc5BMwkg","2w31kdRL9cDViJ8J5pQc73tj-T1qXXRstIHJ9ufSI-k"],
       success(res) {
         console.log(res);
       },

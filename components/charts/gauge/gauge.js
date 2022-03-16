@@ -2,7 +2,7 @@
 import * as echarts from '../../ec-canvas/echarts.js';
 const gaugeData = [{
     value: (0 / 5) * 100,
-    name: '得分',
+    name: '本月得分',
     title: {
         offsetCenter: ['0%', '-20%']
     },

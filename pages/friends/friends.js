@@ -63,6 +63,9 @@ Page({
     })
   },
   toScore:function(){
-    this.toTimeAndDogsNone()
+    // this.toTimeAndDogsNone();
+    wx.navigateTo({
+      url: '../score/score',
+    })
   }
 })

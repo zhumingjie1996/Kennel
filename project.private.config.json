@@ -1,36 +1,42 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/friends/friends",
-          "pathName": "pages/friends/friends",
-          "query": "",
-          "scene": null
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "name": "pages/timeAndDogs/timeAndDogs",
-          "pathName": "pages/timeAndDogs/timeAndDogs",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "name": "pages/write/write",
-          "pathName": "pages/write/write",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/friends/friends",
+                    "pathName": "pages/friends/friends",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/timeAndDogs/timeAndDogs",
+                    "pathName": "pages/timeAndDogs/timeAndDogs",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/write/write",
+                    "pathName": "pages/write/write",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/score/score",
+                    "pathName": "pages/score/score",
+                    "query": "",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }

@@ -100,3 +100,7 @@
 .socialInfoItemNum{
   font-weight: 700;
 }
+
+.setting{
+  margin-top: 20rpx;
+}

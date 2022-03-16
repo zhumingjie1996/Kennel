@@ -28,14 +28,19 @@
             </view>
         </view>
     </van-cell> -->
-    <van-cell icon="bullhorn-o" is-link bindtap="toScore">
+    <van-cell is-link bindtap="toScore">
         <view slot="title">
-            <view class="van-cell-text">子悦老师的记分板</view>
+            <view class="van-cell-text">📝 子悦老师的记分板</view>
         </view>
     </van-cell>
-    <van-cell icon="flag-o" is-link bindtap="toTimeAndDogsNone">
+    <van-cell is-link bindtap="toTimeAndDogsNone">
         <view slot="title">
-            <view class="van-cell-text">小朱同学的表白墙</view>
+            <view class="van-cell-text">😘 小朱同学的表白墙</view>
+        </view>
+    </van-cell>
+    <van-cell is-link bindtap="toTimeAndDogsNone">
+        <view slot="title">
+            <view class="van-cell-text">🎊 一些有纪念意义的日子</view>
         </view>
     </van-cell>
 </view>
