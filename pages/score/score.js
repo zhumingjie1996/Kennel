@@ -13,6 +13,9 @@ Page({
     reason: "",
     addList:[],
     delList:[],
+    listActiveNames: [],
+    addAllScore:0,
+    delAllScore:0,
   },
 
   /**
@@ -38,11 +41,12 @@ Page({
       name: 'getNumberStatistic',
     }).then(res => {
       let item = res.result.data[0];
-      console.log(res.result.data)
       _this.setData({
         total: item.total,
         addList: item.add.reverse(),
-        delList: item.del.reverse()
+        delList: item.del.reverse(),
+        addAllScore: _this.addDelSocreAll(item.add),
+        delAllScore: _this.addDelSocreAll(item.del),
       })
     })
   },
@@ -132,6 +136,21 @@ Page({
     return formatTime(time)
   },
 
+  // 点击列表展开
+  listOnChange(event) {
+    this.setData({
+      listActiveNames: event.detail,
+    });
+  },
+
+  // 计算本月总加分
+  addDelSocreAll(arr){
+    let total = 0;
+    arr.map(item=>{
+      total += item.score
+    });
+    return total;
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

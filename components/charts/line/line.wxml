@@ -1,0 +1,4 @@
+<!--components/charts/line/line.wxml-->
+<view class="container">
+    <ec-canvas id="lineChart" class="line" canvas-id="gauge-bar" ec="{{ec}}"></ec-canvas>
+</view>

@@ -1,16 +1,39 @@
 // components/charts/gauge/gauge.js
 import * as echarts from '../../ec-canvas/echarts.js';
 const gaugeData = [{
-    value: (0 / 5) * 1000,
-    name: '本月得分',
-    title: {
-        offsetCenter: ['0%', '-20%']
+        value: (0 / 5) * 1000,
+        name: '本月总分',
+        title: {
+            offsetCenter: ['0%', '-50%']
+        },
+        detail: {
+            valueAnimation: true,
+            offsetCenter: ['0%', '-35%']
+        }
     },
-    detail: {
-        valueAnimation: true,
-        offsetCenter: ['0%', '10%']
+    {
+        value: 40,
+        name: '本月加分',
+        title: {
+            offsetCenter: ['0%', '-10%']
+        },
+        detail: {
+            valueAnimation: true,
+            offsetCenter: ['0%', '6%']
+        }
+    },
+    {
+        value: 60,
+        name: '本月扣分',
+        title: {
+            offsetCenter: ['0%', '30%']
+        },
+        detail: {
+            valueAnimation: true,
+            offsetCenter: ['0%', '46%']
+        }
     }
-}];
+];
 let chart;
 
 function initChart(canvas, width, height, dpr) {
@@ -28,8 +51,8 @@ function initChart(canvas, width, height, dpr) {
             pointer: {
                 show: false
             },
-            max:1000,
-            min:0,
+            max: 1000,
+            min: 0,
             progress: {
                 show: true,
                 overlap: false,
@@ -37,13 +60,12 @@ function initChart(canvas, width, height, dpr) {
                 clip: false,
                 itemStyle: {
                     borderWidth: 1,
-                    borderColor: '#464646',
-                    color: '#000000'
+                    borderColor: '#464646'
                 }
             },
             axisLine: {
                 lineStyle: {
-                    width: 20
+                    width: 40
                 }
             },
             splitLine: {
@@ -60,15 +82,15 @@ function initChart(canvas, width, height, dpr) {
             },
             data: gaugeData,
             title: {
-                fontSize: 14
+                fontSize: 12
             },
             detail: {
-                width: 50,
-                height: 30,
-                lineHeight: 40,
-                fontSize: 18,
-                color: '#000',
-                borderColor: '#000',
+                width: 60,
+                height: 10,
+                lineHeight: 10,
+                fontSize: 14,
+                color: 'auto',
+                borderColor: 'auto',
                 borderRadius: 20,
                 borderWidth: 1,
                 formatter: '{value}'
@@ -85,6 +107,12 @@ Component({
      */
     properties: {
         chartData: {
+            type: Number
+        },
+        addAll: {
+            type: Number
+        },
+        delAll: {
             type: Number
         }
     },
@@ -108,7 +136,9 @@ Component({
 
     observers: {
         'chartData': function (val) {
-            console.log(val)
+            gaugeData[0].value = val;
+            gaugeData[1].value = this.properties.addAll;
+            gaugeData[2].value = this.properties.delAll;
             gaugeData[0].value = val;
             if (chart) {
                 chart.setOption({
@@ -117,7 +147,7 @@ Component({
                     }]
                 });
             }
-        }
+        },
     },
     /**
      * 组件的方法列表

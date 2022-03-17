@@ -190,7 +190,9 @@ Component({
     },
     confirmComment: function (e) {
       let _this = this;
-      wx.showLoading();
+      wx.showLoading({
+        title: '加载中',
+      });
       let commentValue = e.detail.value;
       _this.setData({
         commentValue
