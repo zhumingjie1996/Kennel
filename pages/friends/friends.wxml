@@ -3,6 +3,7 @@
     <view class="friendsListTitle">用户列表</view>
     <view class="friendsList">
         <friends-list-item wx:for="{{friendList}}" wx:for-index="index" wx:for-item="item" wx:key="index" userInfo="{{item.userInfo}}"></friends-list-item>
+        <van-skeleton wx:if="{{friendList.length === 0}}" wx:for="{{[1,2]}}" title avatar row="1" />
     </view>
     <view class="activeTitle">互动列表</view>
     <!-- <van-cell icon="clock-o" is-link bindtap="toTimeAndDogs">
