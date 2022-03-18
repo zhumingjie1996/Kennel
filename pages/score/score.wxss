@@ -102,3 +102,19 @@
   margin-left: 5%;
   margin-top: 30rpx;
 }
+
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+display: inline-block;
+width: 80px;
+height: 65px;
+font-size: 15px;
+line-height: 65px;
+color: #fff;
+text-align: center;
+background-color: #f44;
+} 
+
+.van-collapse-item__content{
+  padding: 0 !important;
+}

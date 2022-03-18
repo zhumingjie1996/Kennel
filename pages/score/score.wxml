@@ -20,11 +20,17 @@
     <view class="userList" wx:if="{{notXiuList.length !== 0}}">
         <van-collapse value="{{ listActiveNames }}" bind:change="listOnChange">
             <van-collapse-item title="本月加分列表 (共{{addList.length}}项)" name="add" border="{{false}}" style="font-weight: 700;">
-                <van-cell wx:for="{{addList}}" wx:for-index="index" wx:for-item="item" wx:key="index" title="{{item.reason}}" value="+{{item.score}}" label="{{filter.formater(item.date)}}" style="font-weight: normal;" border="{{false}}" />
+                <van-swipe-cell wx:for="{{addList}}" wx:for-index="index" wx:for-item="item" wx:key="index" right-width="{{ 80 }}" async-close bind:close="onDeleteAddList" data-id="{{item.id}}" data-score="{{item.score}}" data-reason="{{item.reason}}" data-addOrDel="add">
+                    <van-cell  title="{{item.reason}}" value="+{{item.score}}" label="{{filter.formater(item.date)}}" style="font-weight: normal;" border="{{false}}" />
+                    <view slot="right">删除</view>
+                </van-swipe-cell>
                 <view wx:if="{{addList.length == 0}}" style="text-align: center; font-weight: normal;">暂无信息</view>
             </van-collapse-item>
             <van-collapse-item title="本月扣分列表 (共{{delList.length}}项)" name="del" border="{{false}}" style="font-weight: 700;">
-                <van-cell wx:for="{{delList}}" wx:for-index="index" wx:for-item="item" wx:key="index" title="{{item.reason}}" value="{{item.score}}" label="{{filter.formater(item.date)}}" style="font-weight: normal;" border="{{false}}" />
+                <van-swipe-cell wx:for="{{delList}}" wx:for-index="index" wx:for-item="item" wx:key="index" right-width="{{ 80 }}" async-close bind:close="onDeleteAddList" data-id="{{item.id}}" data-score="{{item.score}}" data-reason="{{item.reason}}" data-addOrDel="del">
+                    <van-cell title="{{item.reason}}" value="{{item.score}}" label="{{filter.formater(item.date)}}" style="font-weight: normal;" border="{{false}}" />
+                    <view slot="right">删除</view>
+                </van-swipe-cell>
                 <view wx:if="{{delList.length == 0}}" style="text-align: center; font-weight: normal;">暂无信息</view>
             </van-collapse-item>
         </van-collapse>

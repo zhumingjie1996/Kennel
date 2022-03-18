@@ -45,8 +45,8 @@ Page({
         total: item.total,
         addList: item.add.reverse(),
         delList: item.del.reverse(),
-        addAllScore: _this.addDelSocreAll(item.add,'add'),
-        delAllScore: _this.addDelSocreAll(item.del,'del'),
+        addAllScore: _this.addDelSocreAll(item.add, 'add'),
+        delAllScore: _this.addDelSocreAll(item.del, 'del'),
       })
     })
   },
@@ -84,12 +84,12 @@ Page({
       score: _this.data.addReasonShow ? _this.data.addScore : _this.data.delScore,
       reason: _this.data.reason,
       total: _this.data.total + (_this.data.addReasonShow ? _this.data.addScore : _this.data.delScore),
-      addOrDel: _this.data.addReasonShow ? 'add' : 'del'
+      addOrDel: _this.data.addReasonShow ? 'add' : 'del',
+      id:_this.randomString(10),
+      pushOrPull:'push'
     };
-    console.log(_this.data.delScore)
-    console.log(addObject.total)
     wx.cloud.callFunction({
-      name: 'updateScore',
+      name: 'uploadScoreList',
       data: addObject
     }).then(res => {
       wx.hideLoading({
@@ -153,18 +153,70 @@ Page({
   },
 
   // 计算本月总加分
-  addDelSocreAll(arr,flag) {
+  addDelSocreAll(arr, flag) {
     let total = 0;
-    if(flag === 'add'){
+    if (flag === 'add') {
       arr.map(item => {
         total += item.score
       });
-    }else{
+    } else {
       arr.map(item => {
         total -= item.score
       });
     }
     return total;
+  },
+  // 删除列表内容
+  onDeleteAddList(event) {
+    let _this = this;
+    const {
+      position,
+      instance
+    } = event.detail;
+    switch (position) {
+      case 'right':
+        wx.showModal({
+          title: '提示',
+          content: '确定要删除吗😉',
+          success(res) {
+            if (res.confirm) {
+              instance.close();
+              wx.showLoading({
+                title:'删除中...'
+              })
+              wx.cloud.callFunction({
+                name:"uploadScoreList",
+                data:{
+                  ...event.currentTarget.dataset,
+                  addOrDel:event.currentTarget.dataset.addordel,
+                  pushOrPull:'pull',
+                  total: _this.data.total - event.currentTarget.dataset.score,
+                }
+              }).then(res=>{
+                wx.hideLoading();
+                _this.onShow();
+              })
+            } else if (res.cancel) {
+              instance.close()
+            }
+          }
+        })
+        break;
+    }
+  },
+
+  // 生成随机lsit的id
+  randomString(len) {
+    len = len || 32;
+    let timestamp = new Date().getTime();
+    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+    let $chars = 'ABCDEFGHJKMNOPQRSTUVWXYZabcdefhijkmnprstwxyz2345678';
+    let maxPos = $chars.length;
+    let randomStr = '';
+    for (let i = 0; i < len; i++) {
+      randomStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+    }
+    return randomStr + timestamp;
   },
   /**
    * 生命周期函数--监听页面隐藏
