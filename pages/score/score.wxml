@@ -24,7 +24,7 @@
                 <view wx:if="{{addList.length == 0}}" style="text-align: center; font-weight: normal;">暂无信息</view>
             </van-collapse-item>
             <van-collapse-item title="本月扣分列表 (共{{delList.length}}项)" name="del" border="{{false}}" style="font-weight: 700;">
-                <van-cell wx:for="{{delList}}" wx:for-index="index" wx:for-item="item" wx:key="index" title="{{item.reason}}" value="-{{item.score}}" label="{{filter.formater(item.date)}}" style="font-weight: normal;" border="{{false}}" />
+                <van-cell wx:for="{{delList}}" wx:for-index="index" wx:for-item="item" wx:key="index" title="{{item.reason}}" value="{{item.score}}" label="{{filter.formater(item.date)}}" style="font-weight: normal;" border="{{false}}" />
                 <view wx:if="{{delList.length == 0}}" style="text-align: center; font-weight: normal;">暂无信息</view>
             </van-collapse-item>
         </van-collapse>

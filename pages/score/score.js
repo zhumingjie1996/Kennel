@@ -9,13 +9,13 @@ Page({
     delReasonShow: false,
     total: 0,
     addScore: 5,
-    delScore:-5,
+    delScore: -5,
     reason: "",
-    addList:[],
-    delList:[],
+    addList: [],
+    delList: [],
     listActiveNames: [],
-    addAllScore:0,
-    delAllScore:0,
+    addAllScore: 0,
+    delAllScore: 0,
   },
 
   /**
@@ -45,8 +45,8 @@ Page({
         total: item.total,
         addList: item.add.reverse(),
         delList: item.del.reverse(),
-        addAllScore: _this.addDelSocreAll(item.add),
-        delAllScore: _this.addDelSocreAll(item.del),
+        addAllScore: _this.addDelSocreAll(item.add,'add'),
+        delAllScore: _this.addDelSocreAll(item.del,'del'),
       })
     })
   },
@@ -77,23 +77,32 @@ Page({
       });
       return;
     }
+    wx.showLoading({
+      title: '加载中'
+    })
     let addObject = {
-      score: _this.data.addScore,
+      score: _this.data.addReasonShow ? _this.data.addScore : _this.data.delScore,
       reason: _this.data.reason,
       total: _this.data.total + (_this.data.addReasonShow ? _this.data.addScore : _this.data.delScore),
-      addOrDel:_this.data.addReasonShow?'add':'del'
+      addOrDel: _this.data.addReasonShow ? 'add' : 'del'
     };
+    console.log(_this.data.delScore)
+    console.log(addObject.total)
     wx.cloud.callFunction({
       name: 'updateScore',
       data: addObject
     }).then(res => {
-      _this.onShow();
-      _this.onCloseAddReason();
-      _this.onCloseDelReason();
-      _this.setData({
-        addScore: 5,
-        delScore: -5,
-        reason: "",
+      wx.hideLoading({
+        success: (res) => {
+          _this.onShow();
+          _this.onCloseAddReason();
+          _this.onCloseDelReason();
+          _this.setData({
+            addScore: 5,
+            delScore: -5,
+            reason: "",
+          })
+        },
       })
     })
   },
@@ -111,8 +120,8 @@ Page({
     let _this = this;
     _this.setData({
       delReasonShow: false,
-      delScore:-5,
-      reason:""
+      delScore: -5,
+      reason: ""
     })
   },
 
@@ -124,7 +133,7 @@ Page({
     })
   },
   // 扣分分值变化
-  onDelScoreChange(e){
+  onDelScoreChange(e) {
     let _this = this;
     _this.setData({
       delScore: e.detail
@@ -132,7 +141,7 @@ Page({
   },
 
   // 格式化时间
-  formatTimer(time){
+  formatTimer(time) {
     return formatTime(time)
   },
 
@@ -144,11 +153,17 @@ Page({
   },
 
   // 计算本月总加分
-  addDelSocreAll(arr){
+  addDelSocreAll(arr,flag) {
     let total = 0;
-    arr.map(item=>{
-      total += item.score
-    });
+    if(flag === 'add'){
+      arr.map(item => {
+        total += item.score
+      });
+    }else{
+      arr.map(item => {
+        total -= item.score
+      });
+    }
     return total;
   },
   /**
