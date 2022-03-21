@@ -1,10 +1,11 @@
 // pages/score/score.js
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    isZiYue:false,
     addReasonShow: false,
     delReasonShow: false,
     total: 0,
@@ -37,6 +38,8 @@ Page({
    */
   onShow: function () {
     let _this = this;
+    // 判断是否显示加减分按钮
+      _this.setData({isZiYue:app.globalData.userInfo.openId === 'o9v6H5ABKYC6huP9uvO7AAT511Tc'});
     wx.cloud.callFunction({
       name: 'getNumberStatistic',
     }).then(res => {

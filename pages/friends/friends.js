@@ -67,5 +67,10 @@ Page({
     wx.navigateTo({
       url: '../score/score',
     })
+  },
+  toCountDown:function(){
+    wx.navigateTo({
+      url: '../countDown/countDown',
+    })
   }
 })

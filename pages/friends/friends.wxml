@@ -6,29 +6,6 @@
         <van-skeleton wx:if="{{friendList.length === 0}}" wx:for="{{[1,2]}}" title avatar row="1" />
     </view>
     <view class="activeTitle">互动列表</view>
-    <!-- <van-cell icon="clock-o" is-link bindtap="toTimeAndDogs">
-        <view slot="title">
-            <view class="van-cell-text">几点几狗<van-tag round style="margin-left: 20rpx;" color="#000" text-color="#fff">每日</van-tag>
-            </view>
-        </view>
-    </van-cell>
-    <van-cell icon="chart-trending-o" is-link bindtap="toTimeAndDogsNone">
-        <view slot="title">
-            <view class="van-cell-text">战况分析</view>
-        </view>
-    </van-cell> -->
-    <!-- <van-cell icon="point-gift-o" is-link>
-        <view slot="title">
-            <view class="van-cell-text">匿名的投喂<van-tag round style="margin-left: 20rpx;" color="#000" text-color="#fff">随机</van-tag>
-            </view>
-        </view>
-    </van-cell>
-    <van-cell icon="free-postage" is-link>
-        <view slot="title">
-            <view class="van-cell-text">淦波的空投<van-tag round style="margin-left: 20rpx;" color="#000" text-color="#fff">随机</van-tag>
-            </view>
-        </view>
-    </van-cell> -->
     <van-cell is-link bindtap="toScore">
         <view slot="title">
             <view class="van-cell-text">📝 子悦老师的记分板</view>
@@ -39,7 +16,7 @@
             <view class="van-cell-text">😘 小朱同学的表白墙</view>
         </view>
     </van-cell>
-    <van-cell is-link bindtap="toTimeAndDogsNone">
+    <van-cell is-link bindtap="toCountDown">
         <view slot="title">
             <view class="van-cell-text">🎊 一些有纪念意义的日子</view>
         </view>

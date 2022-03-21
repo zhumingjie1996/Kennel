@@ -1,0 +1,7 @@
+<!--components/countDownItem/countDownItem.wxml-->
+<view class="container">
+  <van-swipe-cell right-width="{{ 65 }}">
+      <van-cell title="跟子悦老师认识" label="2022年1月16日" value="62天" />
+    <view slot="right">删除</view>
+  </van-swipe-cell>
+</view>

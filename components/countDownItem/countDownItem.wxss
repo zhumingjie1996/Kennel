@@ -1,0 +1,3 @@
+.cellGroup{
+  background-color: gray !important;
+}
