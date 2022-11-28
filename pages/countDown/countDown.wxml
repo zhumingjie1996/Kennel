@@ -1,7 +1,4 @@
 <!--pages/countDown/countDown.wxml-->
 <view class="container">
     <count-down-item></count-down-item>
-    <count-down-item></count-down-item>
-    <count-down-item></count-down-item>
-    <count-down-item></count-down-item>
 </view>

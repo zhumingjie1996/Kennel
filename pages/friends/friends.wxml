@@ -8,10 +8,10 @@
     <view class="activeTitle">互动列表</view>
     <van-cell is-link bindtap="toScore">
         <view slot="title">
-            <view class="van-cell-text">📝 子悦老师的记分板</view>
+            <view class="van-cell-text">📝 葛女士的记分板</view>
         </view>
     </van-cell>
-    <van-cell is-link bindtap="toTimeAndDogsNone">
+    <van-cell is-link bindtap="toWall">
         <view slot="title">
             <view class="van-cell-text">😘 小朱同学的表白墙</view>
         </view>

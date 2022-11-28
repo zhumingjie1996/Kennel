@@ -7,7 +7,11 @@
     "pages/signature/signature",
     "pages/timeAndDogs/timeAndDogs",
     "pages/score/score",
-    "pages/countDown/countDown"
+    "pages/countDown/countDown",
+    "pages/wall/wall"
+  ],
+  "requiredPrivateInfos": [
+    "chooseLocation"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,19 +25,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "动态",
+        "text": "🤍🤍🤍",
         "iconPath": "assets/icons/integral.png",
         "selectedIconPath": "assets/icons/integral-fill.png"
       },
       {
         "pagePath": "pages/friends/friends",
-        "text": "互动",
+        "text": "🤍🤍🤍",
         "iconPath": "assets/icons/Customer-management.png",
         "selectedIconPath": "assets/icons/Customer-management-fill.png"
       },
       {
         "pagePath": "pages/me/me",
-        "text": "我的",
+        "text": "🤍🤍🤍",
         "iconPath": "assets/icons/bussiness-man.png",
         "selectedIconPath": "assets/icons/bussiness-man-fill.png"
       }

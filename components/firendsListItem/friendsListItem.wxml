@@ -1,16 +1,21 @@
 <!--components/firendsListItem/friendsListItem.wxml-->
 <view class="container">
-    <view class="avatar">
-        <image wx:if="{{userInfo.avatarUrl && userInfo.avatarUrl !== ''}}" class="avatarImg" style="width: 100%; height: 100%;" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
-        <image wx:else class="avatarImg" style="width: 100%; height: 100%; background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
-    </view>
+  <view class="avatar">
+    <image wx:if="{{userInfo.avatarUrl && userInfo.avatarUrl !== ''}}" class="avatarImg" style="width: 100%; height: 100%;" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    <image wx:else class="avatarImg" style="width: 100%; height: 100%; background-color: #eeeeee;" src="../../assets/icons/avatar_default.png" mode="aspectFill"></image>
+  </view>
+  <view class="nickNameAndSignAndTime">
     <view class="nickNameAndSign">
-        <view class="nickName">
-            <text wx:if="{{userInfo.nickName && userInfo.nickName !== ''}}">{{userInfo.nickName}}</text>
-            <text wx:else>{{'匿名犬'}}</text>
-        </view>
-        <view class="signature" wx:if="{{userInfo.signature && userInfo.signature !== ''}}">
-            <text>{{userInfo.signature}}</text>
-        </view>
+      <view class="nickName">
+        <text wx:if="{{userInfo.nickName && userInfo.nickName !== ''}}">{{userInfo.nickName}}</text>
+        <text wx:else>{{'匿名'}}</text>
+      </view>
+      <view class="lastLoginDate" wx:if="{{userInfoUse.lastLoginDate && userInfoUse.lastLoginDate !== ''}}">
+        <text>{{userInfoUse.lastLoginDate}}来过</text>
+      </view>
     </view>
+    <view class="signature" wx:if="{{userInfo.signature && userInfo.signature !== ''}}">
+      <text>{{userInfo.signature}}</text>
+    </view>
+  </view>
 </view>

@@ -11,32 +11,37 @@
     </view>
 
   </view>
-  <view class="imgs">
+  <view wx:if="{{imgList.length > 1}}" class="imgs">
     <view class="commitImgs" wx:for="{{imgList}}" wx:for-index="index" wx:key="index" wx:for-item="item">
       <image class="commitImgsInner" wx:if="{{item.type === 'image'}}" src="{{item.url}}" mode="aspectFill" data-nowindex="{{index}}" bindtap="previewImgs"></image>
       <video class="commitImgsInner" wx:elif="{{item.type === 'video'}}" src="{{item.url}}" controls="false" object-fit="fill" data-nowindex="{{index}}" bindtap="previewImgs"></video>
     </view>
   </view>
-  <view class="time">
-    <text class="dateAndTime">{{date}}</text>
+  <view wx:if="{{imgList.length === 1}}" class="imgsOnlyOne">
+      <image class="commitImgsInnerOnlyOne" wx:if="{{imgList[0].type === 'image'}}" src="{{imgList[0].url}}" data-nowindex="{{0}}" bindtap="previewImgs" mode="{{imgList[0].isWidthBig ? 'widthFix' : 'heightFix'}}"></image>
+      <video class="commitImgsInnerOnlyOne" wx:elif="{{imgList[0].type === 'video'}}" src="{{imgList[0].url}}" controls="false" object-fit="fill" data-nowindex="{{0}}" bindtap="previewImgs"></video>
   </view>
-  <view class="operate">
+  <view class="operate" wx:if="{{location !== ''}}">
     <view class="location">
-      <van-icon name="location-o" wx:if="{{location !== ''}}" />
+      <van-icon name="location" size="13" wx:if="{{location !== ''}}" />
       <text class="locationText">{{location}}</text>
     </view>
-    <view class="ken_tian">
+    <!-- <view class="ken_tian">
       <view class="operateItem tian" bindtap="tian">
         <van-icon name="good-job-o" />
         <text class="operateText">{{'赞（'+tianNum+'）'}}</text>
       </view>
-    </view>
+    </view> -->
   </view>
-  <view class="comment">
-    <!-- <van-field model:value="{{commentValue}}" border="{{false}}" placeholder="添加评论" bind:change="onCommentChange" /> -->
-    <input value="{{commentValue}}" class="weui-input" confirm-type='提交' placeholder="评论" bindconfirm="confirmComment"/>
+  <view class="time">
+    <text class="dateAndTime">{{date}}</text>
+    <view class="operateBar" bindtap="showHideComment"></view>
   </view>
+
   <view class="commentList">
     <view wx:for="{{commentList}}" wx:for-item="item" wx:for-index="index" wx:key="index" class="comment-list" bindtap="operateComment" data-date="{{tools.sub(item.date)}}" bindlongpress="deleteComment" data-openid="{{item.openid}}" data-id="{{item._id}}"><text style="font-weight: 700;">{{item.search[0].userInfo.nickName}}</text> ：{{item.value}}</view>
+  </view>
+  <view class="comment" wx:if="{{showComment}}">
+    <input value="{{commentValue}}" focus="{{true}}" class="weui-input" confirm-type='send' placeholder="评论" bindconfirm="confirmComment" 	bindblur="commentBlur"/>
   </view>
 </view>

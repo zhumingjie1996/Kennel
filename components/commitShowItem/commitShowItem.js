@@ -42,6 +42,24 @@ Component({
           });
           imgsrcList.push(item.fileID);
         });
+        //如果图片只有一张，那么判断图片的长宽大小
+        if (imgList.length === 1) {
+          wx.getImageInfo({
+            src: imgList[0].url,
+            success(res) {
+              if (res.height >= res.width) {
+                imgList[0].isWidthBig = false
+              }else{
+                imgList[0].isWidthBig = true
+              }
+              _this.setData({
+                imgList,
+                imgsrcList
+              });
+            }
+          })
+          return
+        }
         _this.setData({
           imgList,
           imgsrcList
@@ -88,22 +106,23 @@ Component({
     commentList: [],
     commontValue: '',
     showDelete: false,
+    showComment:false, //显示评论框
   },
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
       let _this = this;
-      Promise.all([
-        _this.getOperateCommits('tian'),
-        _this.getOperateCommits('ken')
-      ]).then(res => {
-        let tianNum = res[0].result.data.length;
-        let kenNum = res[1].result.data.length;
-        _this.setData({
-          tianNum,
-          kenNum
-        })
-      })
+      // Promise.all([
+      //   _this.getOperateCommits('tian'),
+      //   _this.getOperateCommits('ken')
+      // ]).then(res => {
+      //   let tianNum = res[0].result.data.length;
+      //   let kenNum = res[1].result.data.length;
+      //   _this.setData({
+      //     tianNum,
+      //     kenNum
+      //   })
+      // })
     },
   },
   /**
@@ -127,53 +146,53 @@ Component({
         sources: _this.data.imgList // 需要预览的图片http链接列表
       })
     },
-    operateCommit: function (operateName) {
-      // 舔或啃
-      // 可以同时舔和啃，但是只能每条最多一次
-      let _this = this;
-      if (!_this.data.commitId || _this.data.commitId === "") {
-        wx.showToast({
-          title: '未获取到动态id',
-          icon: 'none'
-        })
-        return;
-      }
-      return wx.cloud.callFunction({
-        name: 'operateCommit',
-        data: {
-          operateName,
-          commitId: _this.data.commitId,
-          addOrRemove: 'add'
-        }
-      })
-    },
-    tian: function () {
-      let _this = this;
-      _this.operateCommit('tian').then(() => {
-        _this.setData({
-          tianNum: _this.data.tianNum + 1
-        });
-      })
-    },
-    ken: function () {
-      let _this = this;
-      _this.operateCommit('ken').then(() => {
-        _this.setData({
-          kenNum: _this.data.kenNum + 1
-        })
-      })
-    },
-    getOperateCommits: function (operateType) { //operateType:tian/ken
-      // 获取当前动态的啃和舔的数据
-      let _this = this;
-      return wx.cloud.callFunction({
-        name: 'getOperateCommit',
-        data: {
-          commitId: _this.data.commitId,
-          operateType
-        }
-      })
-    },
+    // operateCommit: function (operateName) {
+    //   // 舔或啃
+    //   // 可以同时舔和啃，但是只能每条最多一次
+    //   let _this = this;
+    //   if (!_this.data.commitId || _this.data.commitId === "") {
+    //     wx.showToast({
+    //       title: '未获取到动态id',
+    //       icon: 'none'
+    //     })
+    //     return;
+    //   }
+    //   return wx.cloud.callFunction({
+    //     name: 'operateCommit',
+    //     data: {
+    //       operateName,
+    //       commitId: _this.data.commitId,
+    //       addOrRemove: 'add'
+    //     }
+    //   })
+    // },
+    // tian: function () {
+    //   let _this = this;
+    //   _this.operateCommit('tian').then(() => {
+    //     _this.setData({
+    //       tianNum: _this.data.tianNum + 1
+    //     });
+    //   })
+    // },
+    // ken: function () {
+    //   let _this = this;
+    //   _this.operateCommit('ken').then(() => {
+    //     _this.setData({
+    //       kenNum: _this.data.kenNum + 1
+    //     })
+    //   })
+    // },
+    // getOperateCommits: function (operateType) { //operateType:tian/ken
+    //   // 获取当前动态的啃和舔的数据
+    //   let _this = this;
+    //   return wx.cloud.callFunction({
+    //     name: 'getOperateCommit',
+    //     data: {
+    //       commitId: _this.data.commitId,
+    //       operateType
+    //     }
+    //   })
+    // },
     getComments: function (type) {
       // 获取当前动态的评论列表
       let _this = this;
@@ -208,6 +227,7 @@ Component({
         _this.getComments(1);
         _this.setData({
           commentValue: '',
+          showComment:false
         });
         wx.hideLoading();
         // 消息推送
@@ -313,6 +333,18 @@ Component({
       wx.showToast({
         title: data.currentTarget.dataset.date,
         icon: 'none'
+      })
+    },
+    // 点击显示评论框
+    showHideComment(){
+      this.setData({
+        showComment:!this.data.showComment
+      })
+    },
+    // 评论失去焦点
+    commentBlur(){
+      this.setData({
+        showComment:!this.data.showComment
       })
     },
     // 删除评论

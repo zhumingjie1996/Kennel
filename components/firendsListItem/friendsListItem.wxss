@@ -1,35 +1,50 @@
 /* components/firendsListItem/friendsListItem.wxss */
-.container{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    padding: 20rpx;
-    box-sizing: border-box;
-    border-bottom: 1rpx solid rgb(247, 247, 247);
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid rgb(247, 247, 247);
 }
 
-.avatar{
-    width: 80rpx;
-    height: 80rpx;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 1rpx solid #000;
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1rpx solid #000;
 }
 
-.nickNameAndSign{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: space-around;
-    margin-left: 30rpx;
+.nickNameAndSignAndTime {
+  width: calc(100% - 40rpx - 80rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-around;
+  margin-left: 30rpx;
 }
 
-.nickName{
-    font-weight: 700;
+.nickNameAndSign {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.signature{
-    font-size: small;
-    font-weight: 400;
-    color: #D5D5D5;
+.nickName {
+  font-weight: 700;
+}
+
+.signature {
+  font-size: small;
+  font-weight: 400;
+  color: #D5D5D5;
+}
+
+.lastLoginDate {
+  font-size: 22rpx;
+  font-weight: 400;
+  color: #D5D5D5;
+  margin-left: 30rpx;
 }

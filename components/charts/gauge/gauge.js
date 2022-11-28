@@ -51,8 +51,8 @@ function initChart(canvas, width, height, dpr) {
             pointer: {
                 show: false
             },
-            max: 1000,
-            min: 0,
+            max: 100,
+            // min: ,
             progress: {
                 show: true,
                 overlap: false,

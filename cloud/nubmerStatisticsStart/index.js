@@ -16,7 +16,9 @@ exports.main = async (event, context) => {
             data:{
                 isLaster:true,
                 date:db.serverDate(),
-                total:60
+                total:60,
+                add:[],
+                del:[]
             }
         })
     })

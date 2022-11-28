@@ -6,10 +6,10 @@
         <gauge-chart chartData="{{total}}" addAll="{{addAllScore}}" delAll="{{delAllScore}}"></gauge-chart>
 
     </view>
-    <view class="button" wx:if="{{isZiYue}}">
+    <view class="button" wx:if="{{isGxy}}">
         <van-button class="commit" type="primary" block size="normal" round color="{{'#000'}}" bindtap="addScore">{{'加分'}}</van-button>
     </view>
-    <view class="notFight" bindtap="delScore" wx:if="{{isZiYue}}">扣分</view>
+    <view class="notFight" bindtap="delScore" wx:if="{{isGxy}}">扣分</view>
 
     <view class="userList" wx:if="{{notXiuList.length !== 0}}">
         <van-collapse value="{{ listActiveNames }}" bind:change="listOnChange">

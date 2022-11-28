@@ -6,7 +6,7 @@ App({
       console.error('此版本不支持云函数')
     } else {
       wx.cloud.init({
-        env: 'zhumingjie-wxcloud-0dmpke1424a47'
+        env: 'pokeball-0gh5ucug38950eb7'
       })
     };
     // 用户入库
@@ -37,11 +37,22 @@ App({
           })
         }
       })
+      .then(res=>{
+        // 记录最新一次的登陆时间
+        wx.cloud.callFunction({
+          name: 'updateRecord',
+          data: {
+            userInfo: {
+              lastLoginDate: new Date().getTime()
+            }
+          }
+        })
+      })
   },
   globalData: {
     userInfo: {
       openId: ''
     },
-    openIdList:[{name:'张子悦',openid:'o9v6H5ABKYC6huP9uvO7AAT511Tc'},{name:'朱明杰',openid:'o9v6H5EdPX42x3yWJUrZhyjIOhOI'}],
+    openIdList:[{name:'葛欣怡',openid:'oY4HQ5Ic7aWRXxQiQO1Jz7amAvC8'},{name:'朱明杰',openid:'oY4HQ5MPUUzLuJEJOofl9iPtwl9w'}],
   }
 })

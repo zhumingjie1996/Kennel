@@ -53,27 +53,27 @@
   display: inline-block;
   font-weight: normal;
   font-size: 20rpx;
-  height: 25rpx;
-  width: 25rpx;
+  height: 20rpx;
+  width: 20rpx;
   position: relative;
 }
 
 .delete::before{
   content: "";
   position:absolute;
-  width: 2px;
+  width: 1px;
   height: 100%;
   border-radius: 1px;
-  background: rgb(156, 156, 156);
+  background: rgb(199, 199, 199);
   transform: rotateZ(45deg);
 }
 .delete::after{
   content: "";
   position:absolute;
-  width: 2px;
+  width: 1px;
   height: 100%;
   border-radius: 1px;
-  background: rgb(156, 156, 156);
+  background: rgb(199, 199, 199);
   transform: rotateZ(-45deg);
 }
 
@@ -86,6 +86,7 @@
 .text{
   margin-top: 10rpx;
   font-size: 28rpx;
+  font-weight: 700;
 }
 
 .imgs{
@@ -106,19 +107,67 @@
 .commitImgsInner{
   width: 100%;
   height: 100%;
-  border-radius: 8rpx;
+  border-radius: 5rpx;
 }
 
+/* 仅有一张图片的时候图片自适应大小 */
+.imgsOnlyOne{
+  width: 80%;
+  overflow: hidden;
+  margin-left: 96rpx;
+  margin-top: 20rpx;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: start; */
+}
+.commitImgsInnerOnlyOne{
+  width: 100%;
+  /* height: auto; */
+  max-height: 400rpx;
+  border-radius: 5rpx;
+}
 .operate,
 .time{
-  width: 85%;
+  width: 80%;
   margin-left: 13.5%;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.operateBar{
+  position: relative;
+  width: 50rpx;
+  height: 30rpx;
+  background-color: #f1f1f1;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
+
+.operateBar::before{
+  content: '';
+  /* position: absolute; */
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.operateBar::after{
+  content: '';
+  /* position: absolute; */
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 50%;
+  background-color: #000;
 }
 
 .locationText{
@@ -162,6 +211,7 @@
   width: 81%;
   padding: 0 20rpx;
   margin-left: 11.5%;
+  font-weight: 700;
   font-size: 25rpx;
 }
 

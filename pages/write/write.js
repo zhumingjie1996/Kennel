@@ -45,7 +45,7 @@ Page({
 
   chooseLocation() {
     let _this = this;
-    wx.choosePoi({
+    wx.chooseLocation({
       success: function (res) {
         _this.setData({
           location: res.type === 1 ? res.city : res.name

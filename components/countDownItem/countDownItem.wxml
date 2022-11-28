@@ -1,7 +1,9 @@
 <!--components/countDownItem/countDownItem.wxml-->
 <view class="container">
   <van-swipe-cell right-width="{{ 65 }}">
-      <van-cell title="跟子悦老师认识" label="2022年1月16日" value="62天" />
+      <van-cell title="跟葛欣怡在一起" label="2022年1月16日" >
+        <van-count-down time="{{ 1 * 1 * 10 * 1000 }}" format="DD 天 HH 时 mm 分 ss 秒" />
+      </van-cell>
     <view slot="right">删除</view>
   </van-swipe-cell>
 </view>

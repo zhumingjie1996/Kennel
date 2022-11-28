@@ -55,7 +55,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    let _this = this;
+    _this.setData({
+      friendList: [],
+    });
+    _this.getUserList().then(res=>{
+      let resList = res.result.data;
+      _this.setData({
+        friendList:resList
+      })
+      wx.stopPullDownRefresh({
+        success: (res) => {
+          wx.showToast({
+            title: '刷新成功😎',
+            icon: 'none'
+          })
+        },
+      })
+    })
   },
   getUserList:function(){
     return wx.cloud.callFunction({
@@ -66,6 +83,12 @@ Page({
     // this.toTimeAndDogsNone();
     wx.navigateTo({
       url: '../score/score',
+    })
+  },
+  // 跳转到表白墙
+  toWall(){
+    wx.navigateTo({
+      url: '../wall/wall',
     })
   },
   toCountDown:function(){
