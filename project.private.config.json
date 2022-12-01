@@ -34,6 +34,13 @@
           "pathName": "pages/countDown/countDown",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/countDown/countDown",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

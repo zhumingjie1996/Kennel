@@ -1,8 +1,13 @@
 <!--components/countDownItem/countDownItem.wxml-->
 <view class="container">
-  <van-swipe-cell right-width="{{ 65 }}">
-      <van-cell title="跟葛欣怡在一起" label="2022年1月16日" >
-        <span>{{}}天{{}}时{{}}分{{}}秒</span>
+  <van-swipe-cell right-width="{{ 65 }}" bind:close="delete" async-close data-id="{{eventInfo._id}}">
+      <van-cell title="{{eventInfo.eventName + ' ' + isGone}}" label="{{eventStartDate}}" >
+        <span wx:if="{{timeInterval.day && timeInterval.hour && timeInterval.minute && timeInterval.second}}">
+          {{timeInterval.day === '00' ? '' : timeInterval.day + ' 天'}}
+          {{timeInterval.hour === '00' ? '' : timeInterval.hour + ' 时'}} 
+          {{timeInterval.minute === '00' ? '' : timeInterval.minute + ' 分'}}
+          {{timeInterval.second + ' 秒'}}
+        </span>
       </van-cell>
     <view slot="right">删除</view>
   </van-swipe-cell>

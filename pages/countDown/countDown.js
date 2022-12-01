@@ -15,14 +15,20 @@ Page({
     // 新增倒计时的日历弹窗
     addCalendarShow: false,
     // 新增表单
-    addData:{}
+    addData: {},
+    // 是否正在上传
+    isUploadNow:false,
+    // 数据列表
+    dataList:[],
+    // 置顶项
+    topItem:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getDataList()
   },
 
   /**
@@ -43,20 +49,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
@@ -69,8 +61,30 @@ Page({
   onReachBottom: function () {
 
   },
+  // 获取列表
+  getDataList(){
+    // 获取
+    wx.cloud.callFunction({
+      name: 'getSomething',
+      data: {
+        name:'countDownEvents',
+        whereObj:{}
+      }
+    }).then(res=>{
+      this.setData({
+        dataList:res.result.data
+      })
+      // 置顶
+      let topItem = this.data.dataList.filter(item=>{
+        return item.isTop === true
+      })
+      this.setData({
+        topItem:topItem[0]
+      })
+    })
+  },
   // 点击新增倒计时
-  addCountDown() {
+  addCountDown () {
     this.setData({
       addShow: true,
       addData: {
@@ -87,37 +101,44 @@ Page({
   },
 
   //关闭新增弹窗
-  onAddClose() {
+  onAddClose () {
     this.setData({
       addShow: false
     })
   },
   // 显示新增选择日期弹窗
-  showAddCalendar() {
+  showAddCalendar () {
     this.setData({
       addCalendarShow: true,
     })
   },
   // 关闭新增选择日期弹窗
-  onCloseAddCalendar() {
+  onCloseAddCalendar () {
     this.setData({
       addCalendarShow: false
     })
   },
   // 因为输入框的双向绑定不能是表达式a.b所以用事件来监听修改
-  changeEventName(event){
+  changeEventName (event) {
     this.setData({
-      "addData.eventName":event.detail
+      "addData.eventName": event.detail
     })
   },
   // 点击确定选择日期
-  onInput(event) {
-    console.log(event)
+  onInput (event) {
+    this.setData({
+      "addData.eventDate": event.detail
+    });
+    this.onCloseAddCalendar()
+  },
+  // 点击取消选择日期
+  onCancel(){
+    this.onCloseAddCalendar()
   },
   // 点击上传
-  commit() {
+  commit () {
     let _this = this;
-    if(_this.data.addData.eventName === ''){
+    if (_this.data.addData.eventName === '') {
       wx.showToast({
         title: '请输入事件名称',
         icon: 'none'
@@ -125,17 +146,47 @@ Page({
       return
     }
     console.log(_this.data.addData)
+    // 显示正在上传
+    this.setData({
+      isUploadNow:true
+    })
+    wx.cloud.callFunction({
+      name: 'addSomething',
+      data: {
+        name:'countDownEvents',
+        addData:_this.data.addData
+      }
+    }).then(res=>{
+      this.setData({
+        isUploadNow:false
+      })
+      wx.showToast({
+        icon:'success',
+        title:'上传成功'
+      });
+      // 关闭新增弹窗
+      this.onAddClose();
+      this.getDataList()
+    })
   },
   // 修改是否置顶显示
-  onChangeTop() {
+  onChangeTop () {
     this.setData({
-      "addData.isTop":!this.data.addData.isTop
+      "addData.isTop": !this.data.addData.isTop
     })
   },
   //修改是否在首页展示
-  onChangeShowIndex() {
+  onChangeShowIndex () {
     this.setData({
-      "addData.isShowIndex":!this.data.addData.isShowIndex
+      "addData.isShowIndex": !this.data.addData.isShowIndex
     })
+  },
+  //子组件删除成功后调用事件
+  deleteOver: function () {
+    let _this = this;
+    _this.setData({
+      dataList: [],
+    });
+    _this.getDataList();
   },
 })

@@ -27,6 +27,19 @@ Page({
         console.log(error);
       })
   },
+  getTopCountDown(){
+    wx.cloud.callFunction({
+      name:'getSomething',
+      data:{
+        name:'countDownEvents',
+        whereObj:{isTop:true}
+      }
+    }).then(res=>{
+      this.setData({
+        topCountDownItem:res.result.data[0]
+      })
+    })
+  },
   deleteOver: function () {
     let _this = this;
     _this.setData({
@@ -41,6 +54,7 @@ Page({
   },
   onShow: function () {
     this.addFade();
+    this.getTopCountDown()
   },
   onHide() {
     this.removeFade();

@@ -75,3 +75,13 @@
   left: 10%;
   width: 80%;
 }
+
+/* 置顶项 */
+.topItem{
+  padding: 30rpx;
+}
+
+.topItem_name{
+  font-size: 50rpx;
+  font-weight: 700;
+}
