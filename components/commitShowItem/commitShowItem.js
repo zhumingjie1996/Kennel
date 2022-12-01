@@ -2,6 +2,9 @@
 import {
   formatTime
 } from '../../utils/util.js';
+import {
+  timeago
+} from '../../utils/timeAgo'
 const app = getApp();
 Component({
   /**
@@ -46,10 +49,10 @@ Component({
         if (imgList.length === 1) {
           wx.getImageInfo({
             src: imgList[0].url,
-            success(res) {
+            success (res) {
               if (res.height >= res.width) {
                 imgList[0].isWidthBig = false
-              }else{
+              } else {
                 imgList[0].isWidthBig = true
               }
               _this.setData({
@@ -74,7 +77,10 @@ Component({
       type: String,
       default: "",
       observer: function (newVal) {
-        let dateAndTimeAfterFormat = this.timeFormatter(newVal);
+        // console.log(new Date(newVal).getTime())
+        let timeTamp = timeago(new Date(newVal).getTime())
+        // let dateAndTimeDetail = this.timeFormatter(newVal);
+        let dateAndTimeAfterFormat = timeTamp
         this.setData({
           date: dateAndTimeAfterFormat
         })
@@ -106,7 +112,8 @@ Component({
     commentList: [],
     commontValue: '',
     showDelete: false,
-    showComment:false, //显示评论框
+    showComment: false, //显示评论框
+    isShowTimeDetail: false, // 是否显示完整时间
   },
   lifetimes: {
     attached: function () {
@@ -227,7 +234,7 @@ Component({
         _this.getComments(1);
         _this.setData({
           commentValue: '',
-          showComment:false
+          showComment: false
         });
         wx.hideLoading();
         // 消息推送
@@ -246,23 +253,23 @@ Component({
         // _this.send(anotherOpenid);
       })
     },
-    delete() {
+    delete () {
       let _this = this;
       wx.showModal({
         title: '提示',
         content: '🤔你确定要删掉吗🤔',
-        success(res) {
+        success (res) {
           if (res.confirm) {
             console.log(_this.data.commitId)
             wx.cloud.callFunction({
-                name: 'getSomething',
-                data: {
-                  name: 'commits',
-                  whereObj: {
-                    _id: _this.data.commitId
-                  }
+              name: 'getSomething',
+              data: {
+                name: 'commits',
+                whereObj: {
+                  _id: _this.data.commitId
                 }
-              })
+              }
+            })
               .then(res => {
                 console.log(res)
                 let fileList = [];
@@ -282,14 +289,14 @@ Component({
             // 3.删除相关的评论
             // 4.删除存储的照片
             wx.cloud.callFunction({
-                name: 'removeSomething',
-                data: {
-                  name: 'commits',
-                  whereObj: {
-                    _id: _this.data.commitId
-                  }
+              name: 'removeSomething',
+              data: {
+                name: 'commits',
+                whereObj: {
+                  _id: _this.data.commitId
                 }
-              })
+              }
+            })
               .then(res => {
                 wx.cloud.callFunction({
                   name: 'removeSomething',
@@ -336,15 +343,15 @@ Component({
       })
     },
     // 点击显示评论框
-    showHideComment(){
+    showHideComment () {
       this.setData({
-        showComment:!this.data.showComment
+        showComment: !this.data.showComment
       })
     },
     // 评论失去焦点
-    commentBlur(){
+    commentBlur () {
       this.setData({
-        showComment:!this.data.showComment
+        showComment: !this.data.showComment
       })
     },
     // 删除评论
@@ -358,7 +365,7 @@ Component({
         wx.showModal({
           title: '提示',
           content: '🤔你确定要删掉吗🤔',
-          success(res) {
+          success (res) {
             if (res.confirm) {
               wx.cloud.callFunction({
                 name: 'removeSomething',
@@ -399,5 +406,21 @@ Component({
     //     console.log("发送通知失败", res)
     //   });
     // },
+    showTimeDetail () {
+      // let timeTamp = timeago(new Date(newVal).getTime())
+      // // let dateAndTimeDetail = this.timeFormatter(newVal);
+      this.setData({
+        isShowTimeDetail: !this.data.isShowTimeDetail
+      })
+    }
+  },
+  observers: {
+    isShowTimeDetail: function (isShowTime) {
+      let timeTamp = timeago(new Date(this.data.dateAndTime).getTime())
+      let dateAndTimeDetail = this.timeFormatter(this.data.dateAndTime);
+      this.setData({
+        date: isShowTime ? dateAndTimeDetail : timeTamp
+      })
+    }
   }
 })

@@ -17,4 +17,7 @@ function formatTime(value) {
 var sub = function (date) {
     return formatTime(date)
 }
-module.exports.sub = sub;
+
+module.exports = {
+    sub:sub
+};

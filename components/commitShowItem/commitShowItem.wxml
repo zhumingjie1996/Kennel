@@ -34,7 +34,7 @@
     </view> -->
   </view>
   <view class="time">
-    <text class="dateAndTime">{{date}}</text>
+    <text class="dateAndTime" bindtap="showTimeDetail">{{date}}</text>
     <view class="operateBar" bindtap="showHideComment"></view>
   </view>
 

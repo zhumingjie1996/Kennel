@@ -1,4 +1,4 @@
-const timeago = (dateTimeStamp) => {
+var timeago = (dateTimeStamp) => {
   if(!dateTimeStamp || dateTimeStamp === '') return false
   var minute = 1000 * 60;      //把分，时，天，周，半个月，一个月用毫秒表示
   var hour = minute * 60;
@@ -7,7 +7,6 @@ const timeago = (dateTimeStamp) => {
   var halfamonth = day * 15;
   var month = day * 30;
   var now = new Date().getTime();   //获取当前时间毫秒
-  console.log(now)
   var diffValue = now - dateTimeStamp;//时间差
   var result;
 
@@ -23,8 +22,12 @@ const timeago = (dateTimeStamp) => {
       result = " " + parseInt(monthC) + "月前"
   }else if(weekC >= 1 && weekC <= 3){
       result = " " + parseInt(weekC) + "周前"
-  }else if(dayC >= 1 && dayC <= 6){
-      result = " " + parseInt(dayC) + "天前"
+  }else if(dayC >= 1 && dayC < 2){
+      result = " " + "昨天" 
+  }else if(dayC >= 2 && dayC < 3){
+      result = " " + "前天"
+  }else if(dayC >= 3 && dayC < 6){
+    result = " " + parseInt(dayC) + "天前"
   }else if(hourC >= 1 && hourC <= 23){
       result = " " + parseInt(hourC) + "小时前"
   }else if(minC >= 1 && minC <= 59){

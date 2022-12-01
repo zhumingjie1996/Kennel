@@ -1,7 +1,8 @@
 // components/firendsListItem/friendsListItem.js
 import {
   timeago
-} from '../../utils/timeAgo'
+} from '../../utils/timeAgo.js'
+
 Component({
   /**
    * 组件的属性列表
