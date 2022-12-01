@@ -2,7 +2,7 @@
 <view class="container">
   <van-swipe-cell right-width="{{ 65 }}">
       <van-cell title="跟葛欣怡在一起" label="2022年1月16日" >
-        <van-count-down time="{{ 1 * 1 * 10 * 1000 }}" format="DD 天 HH 时 mm 分 ss 秒" />
+        <span>{{}}天{{}}时{{}}分{{}}秒</span>
       </van-cell>
     <view slot="right">删除</view>
   </van-swipe-cell>

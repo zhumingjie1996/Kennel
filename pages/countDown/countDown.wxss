@@ -30,3 +30,48 @@
   align-items: center;
   justify-content: center;
 }
+
+.floatOperate{
+  position: fixed;
+  right: 30rpx;
+  bottom: 100rpx;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  background-color: #000;
+  opacity: .6;
+  transition: all .3s ease-in-out;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.float_add::before{
+  content: '';
+  width: 30rpx;
+  height: 5rpx;
+  border-radius: 5rpx;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.float_add::after{
+  content: '';
+  width: 5rpx;
+  height: 30rpx;
+  border-radius: 5rpx;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.commit{
+  position: fixed;
+  bottom: 50rpx;
+  left: 10%;
+  width: 80%;
+}

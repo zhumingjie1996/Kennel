@@ -1,5 +1,13 @@
 {
   "usingComponents": {
-    "count-down-item":"../../components/countDownItem/countDownItem"
+    "count-down-item":"../../components/countDownItem/countDownItem",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index"
   }
 }
