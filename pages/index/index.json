@@ -4,7 +4,9 @@
     "van-notify": "@vant/weapp/notify/index",
     "van-skeleton": "@vant/weapp/skeleton/index",
     "van-icon": "@vant/weapp/icon/index",
-    "van-notice-bar": "@vant/weapp/notice-bar/index"
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-sticky": "@vant/weapp/sticky/index"
+
   },
   "backgroundColor":"#fff",
   "backgroundTextStyle":"dark",

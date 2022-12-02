@@ -1,6 +1,7 @@
 // index.js
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 var RemoveFade = require('../../behaviors/removeFade/removeFade.js');
+import { formatTimeInterval } from "./utils"
 Page({
   behaviors: [RemoveFade],
   data: {
@@ -8,6 +9,8 @@ Page({
     commitList: [],
     bottomTip: '你已经扒拉到底了～',
     isOperate: false,
+    //置顶倒计时
+    isGone:''
   },
   getCommits: function () {
     let _this = this;
@@ -37,7 +40,20 @@ Page({
     }).then(res=>{
       this.setData({
         topCountDownItem:res.result.data[0]
-      })
+      });
+      setInterval(()=>{
+        let timeInterval = formatTimeInterval(Math.abs(new Date().getTime() - this.data.topCountDownItem.eventDate))
+        let isGone = false;
+        if(new Date().getTime() - this.data.topCountDownItem.eventDate >= 0){
+          isGone = true
+        }else{
+          isGone = false
+        }
+        this.setData({
+          timeInterval,
+          isGone:isGone ? '已经' : '还有'
+        })
+      },1000)
     })
   },
   deleteOver: function () {
@@ -105,6 +121,13 @@ Page({
   closeOperate() {
     this.setData({
       isOperate: false
+    })
+  },
+
+  // 跳转到倒计时界面
+  toCountDownPage(){
+    wx.navigateTo({
+      url: '../../pages/countDown/countDown',
     })
   },
   /**
