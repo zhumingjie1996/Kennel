@@ -87,9 +87,14 @@ Page({
   },
   // 跳转到表白墙
   toWall(){
-    wx.navigateTo({
-      url: '../wall/wall',
+    // wx.navigateTo({
+    //   url: '../wall/wall',
+    // })
+    wx.showToast({
+      title: '敬请期待',
+      icon:'error'
     })
+    return
   },
   toCountDown:function(){
     wx.navigateTo({

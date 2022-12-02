@@ -25,19 +25,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "🤍🤍🤍",
+        "text": "",
         "iconPath": "assets/icons/integral.png",
         "selectedIconPath": "assets/icons/integral-fill.png"
       },
       {
         "pagePath": "pages/friends/friends",
-        "text": "🤍🤍🤍",
+        "text": "",
         "iconPath": "assets/icons/Customer-management.png",
         "selectedIconPath": "assets/icons/Customer-management-fill.png"
       },
       {
         "pagePath": "pages/me/me",
-        "text": "🤍🤍🤍",
+        "text": "",
         "iconPath": "assets/icons/bussiness-man.png",
         "selectedIconPath": "assets/icons/bussiness-man-fill.png"
       }
