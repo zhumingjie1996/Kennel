@@ -1,3 +1,45 @@
 .cellGroup{
   background-color: gray !important;
 }
+
+.right{
+  position: absolute;
+  height: inherit;
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  left: 0;
+}
+
+.rightItem{
+  height: inherit;
+  width: 70px;
+  line-height: 65px;
+  font-size: 14px;
+}
+
+.rightItem:nth-child(1){
+  width: 80px;
+  background-color: #5CB87A;
+}
+
+.rightItem:nth-child(2){
+  background-color:#409EFF;
+  width: 100px;
+}
+
+.rightItem:nth-child(3){
+  width: 70px;
+  background-color:#F56C6C;
+}
+
+.labelInner{
+  width: inherit;
+  display: flex !important;
+  flex-direction: row-reverse !important;
+  align-items: center !important;
+}
+
+.labelTag{
+  margin-left: 10rpx;
+}

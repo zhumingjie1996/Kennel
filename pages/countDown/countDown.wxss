@@ -89,18 +89,35 @@
 .topItem_date{
   font-size: 60rpx;
   font-weight: bolder;
-  margin-top:30rpx
+  margin-top:25rpx
 }
 
 .topItem_startDate{
   font-size: 40rpx;
   font-weight: 700;
-  margin-top:30rpx;
+  margin-top:25rpx;
   /* margin-bottom: 40rpx; */
 }
 
 .smalltag{
   font-size: 40rpx;
   display: inline-block;
-  margin: 0 20rpx;
+  margin: 0 15rpx;
+}
+
+/* 骨架的样式 */
+.skeletonItem{
+  margin-top: 35rpx !important;
+}
+
+.skeletonItem .van-skeleton__row{
+  height: 50rpx;
+}
+
+.skeletonItem:nth-child(2){
+  height: 60rpx;
+}
+
+.skeletonItem:nth-child(2) .van-skeleton__row{
+  height: 60rpx;
 }

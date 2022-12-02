@@ -1,14 +1,28 @@
-<!--components/countDownItem/countDownItem.wxml-->
+<!-- components/countDownItem/countDownItem.wxml -->
 <view class="container">
-  <van-swipe-cell right-width="{{ 65 }}" bind:close="delete" async-close data-id="{{eventInfo._id}}">
-      <van-cell title="{{eventInfo.eventName + isGone}}" label="{{eventStartDate}}" >
+  <van-swipe-cell right-width="{{250}}" async-close>
+    <van-cell title="{{eventInfo.eventName + isGone}}" label="{{eventStartDate}}">
+      <view>
         <span wx:if="{{timeInterval.day && timeInterval.hour && timeInterval.minute && timeInterval.second}}">
           {{timeInterval.day === '00' ? '' : timeInterval.day + ' 天'}}
           {{timeInterval.hour === '00' ? '' : timeInterval.hour + ' 时'}} 
           {{timeInterval.minute === '00' ? '' : timeInterval.minute + ' 分'}}
           {{timeInterval.second + ' 秒'}}
         </span>
-      </van-cell>
-    <view slot="right">删除</view>
+        <view class="labelInner">
+          <van-tag color="#5CB87A" wx:if="{{eventInfo.isTop}}" type="danger" class="labelTag">
+            置顶
+          </van-tag>
+          <van-tag color="#409EFF" wx:if="{{eventInfo.isShowIndex}}" type="danger" class="labelTag">
+            首页展示
+          </van-tag>
+        </view>
+      </view>
+    </van-cell>
+    <view slot="right" class="right">
+      <view class="rightItem" bindtap="toTop" data-id="{{eventInfo._id}}" data-istopnow="{{eventInfo.isTop}}">{{eventInfo.isTop ? '取消置顶' : '置顶'}}</view>
+      <view class="rightItem" bindtap="toIndex" data-id="{{eventInfo._id}}" data-isshowindexnow="{{eventInfo.isShowIndex}}">{{eventInfo.isShowIndex ? '取消首页展示' : '首页展示'}}</view>
+      <view class="rightItem" bindtap="delete" data-id="{{eventInfo._id}}">删除</view>
+    </view>
   </van-swipe-cell>
 </view>
