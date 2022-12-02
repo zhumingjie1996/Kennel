@@ -1,7 +1,7 @@
 <!--components/countDownItem/countDownItem.wxml-->
 <view class="container">
   <van-swipe-cell right-width="{{ 65 }}" bind:close="delete" async-close data-id="{{eventInfo._id}}">
-      <van-cell title="{{eventInfo.eventName + ' ' + isGone}}" label="{{eventStartDate}}" >
+      <van-cell title="{{eventInfo.eventName + isGone}}" label="{{eventStartDate}}" >
         <span wx:if="{{timeInterval.day && timeInterval.hour && timeInterval.minute && timeInterval.second}}">
           {{timeInterval.day === '00' ? '' : timeInterval.day + ' 天'}}
           {{timeInterval.hour === '00' ? '' : timeInterval.hour + ' 时'}} 

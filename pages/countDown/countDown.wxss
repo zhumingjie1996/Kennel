@@ -82,6 +82,25 @@
 }
 
 .topItem_name{
-  font-size: 50rpx;
+  font-size: 40rpx;
   font-weight: 700;
+}
+
+.topItem_date{
+  font-size: 60rpx;
+  font-weight: bolder;
+  margin-top:30rpx
+}
+
+.topItem_startDate{
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-top:30rpx;
+  /* margin-bottom: 40rpx; */
+}
+
+.smalltag{
+  font-size: 40rpx;
+  display: inline-block;
+  margin: 0 20rpx;
 }

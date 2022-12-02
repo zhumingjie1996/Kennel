@@ -2,6 +2,7 @@
 import {
   formatTime
 } from '../../components/countDownItem/utils'
+import { formatTimeInterval } from "./utils"
 Page({
 
   /**
@@ -21,7 +22,9 @@ Page({
     // 数据列表
     dataList:[],
     // 置顶项
-    topItem:{}
+    topItem:{},
+    // 已经/还有
+    isGone:''
   },
 
   /**
@@ -35,10 +38,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    let dateNow = new Date()
-    console.log(dateNow.getTime())
-    let formatter = formatTime(2330268)
-    console.log(formatter)
+
   },
 
   /**
@@ -81,6 +81,19 @@ Page({
       this.setData({
         topItem:topItem[0]
       })
+      setInterval(()=>{
+        let timeInterval = formatTimeInterval(Math.abs(new Date().getTime() - this.data.topItem.eventDate))
+        let isGone = false;
+        if(new Date().getTime() - this.data.topItem.eventDate >= 0){
+          isGone = true
+        }else{
+          isGone = false
+        }
+        this.setData({
+          timeInterval,
+          isGone:isGone ? '已经' : '还有',
+        })
+      },1000)
     })
   },
   // 点击新增倒计时

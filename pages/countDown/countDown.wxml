@@ -2,10 +2,17 @@
 <wxs src="./sub.wxs" module="tools" />
 <view class="container">
     <!-- 置顶项 -->
-    <!-- <view wx:if="{{topItem.eventName}}" class="topItem">
-        <span class="topItem_name">{{topItem.eventName}}</span>
-        <span class="topItem_name">{{topItem.eventDate}}</span>
-    </view> -->
+    <view wx:if="{{topItem.eventName && timeInterval && isGone}}" class="topItem">
+        <view class="topItem_name">{{topItem.eventName + isGone}}</view>
+        <view class="topItem_date" wx:if="{{timeInterval.day && timeInterval.hour && timeInterval.minute && timeInterval.second}}">
+          {{timeInterval.day === '00' ? '' : timeInterval.day}}<span class="smalltag">{{timeInterval.day === '00' ? '' : '天'}}</span>{{timeInterval.hour === '00' ? '' : timeInterval.hour}}<span class="smalltag">{{timeInterval.hour === '00' ? '' : '时'}}</span>{{timeInterval.minute === '00' ? '' : timeInterval.minute}}<span class="smalltag">{{timeInterval.minute === '00' ? '' : '分'}}</span>{{timeInterval.second}}<span class="smalltag">秒</span>
+        </view>
+        <view class="topItem_startDate">
+            {{tools.sub(topItem.eventDate)}}
+        </view>
+    </view>
+    <van-skeleton wx:else title row="2" row-width="{{['85%','60%']}}" />
+    <van-divider contentPosition="center">以上置顶</van-divider>
     <count-down-item wx:for="{{dataList}}" wx:for-index="index" wx:for-item="item" wx:key="{{item._id}}" eventInfo="{{item}}" bind:deleteOver="deleteOver"></count-down-item>
     <van-popup position="bottom" z-index="1001" custom-style="height: 50%" show="{{ addShow }}" bind:close="onAddClose">
         <van-cell-group>
