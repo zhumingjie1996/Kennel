@@ -10,16 +10,16 @@ Page({
     bottomTip: '你已经扒拉到底了～',
     isOperate: false,
     //置顶倒计时
-    isGone:''
+    isGone: ''
   },
   getCommits: function () {
     let _this = this;
     wx.cloud.callFunction({
-        name: 'getCommit',
-        data: {
-          pageNum: _this.data.pageNum
-        }
-      })
+      name: 'getCommit',
+      data: {
+        pageNum: _this.data.pageNum
+      }
+    })
       .then(res => {
         console.log(res);
         _this.setData({
@@ -30,30 +30,44 @@ Page({
         console.log(error);
       })
   },
-  getTopCountDown(){
+  getTopCountDown () {
     wx.cloud.callFunction({
-      name:'getSomething',
-      data:{
-        name:'countDownEvents',
-        whereObj:{isTop:true}
+      name: 'getSomething',
+      data: {
+        name: 'countDownEvents',
+        whereObj: { isShowIndex: true }
       }
-    }).then(res=>{
-      this.setData({
-        topCountDownItem:res.result.data[0]
-      });
-      setInterval(()=>{
-        let timeInterval = formatTimeInterval(Math.abs(new Date().getTime() - this.data.topCountDownItem.eventDate))
-        let isGone = false;
-        if(new Date().getTime() - this.data.topCountDownItem.eventDate >= 0){
-          isGone = true
-        }else{
-          isGone = false
+    }).then(res => {
+      if (res.result.data.length === 0) {
+        this.setData({
+          topCountDownItem: {}
+        })
+      } else {
+        this.setData({
+          topCountDownItem: res.result.data[0]
+        });
+        if (this.data.int) {
+          this.setData({
+            int: undefined
+          })
         }
         this.setData({
-          timeInterval,
-          isGone:isGone ? '已经' : '还有'
+          int: setInterval(() => {
+            let timeInterval = formatTimeInterval(Math.abs(new Date().getTime() - this.data.topCountDownItem.eventDate))
+            let isGone = false;
+            if (new Date().getTime() - this.data.topCountDownItem.eventDate >= 0) {
+              isGone = true
+            } else {
+              isGone = false
+            }
+            this.setData({
+              timeInterval,
+              isGone: isGone ? '已经' : '还有'
+            })
+          }, 1000)
         })
-      },1000)
+      }
+
     })
   },
   deleteOver: function () {
@@ -64,7 +78,7 @@ Page({
     });
     _this.getCommits();
   },
-  onLoad() {
+  onLoad () {
     let _this = this;
     _this.getCommits();
   },
@@ -72,10 +86,10 @@ Page({
     this.addFade();
     this.getTopCountDown()
   },
-  onHide() {
+  onHide () {
     this.removeFade();
   },
-  operate() {
+  operate () {
     this.setData({
       isOperate: !this.data.isOperate
     })
@@ -83,17 +97,17 @@ Page({
       type: 'light'
     });
   },
-  toEdit() {
+  toEdit () {
     // 直接去编辑
-    wx.vibrateShort({type: 'heavy'});
+    wx.vibrateShort({ type: 'heavy' });
     this.setData({
-      isOperate:false
+      isOperate: false
     })
     wx.navigateTo({
       url: '../../pages/write/write',
     })
   },
-  operateButton(e) {
+  operateButton (e) {
     let operateName = e.currentTarget.dataset.operatename;
     if (operateName === 'edit') {
       // 编辑
@@ -118,14 +132,14 @@ Page({
     }
   },
 
-  closeOperate() {
+  closeOperate () {
     this.setData({
       isOperate: false
     })
   },
 
   // 跳转到倒计时界面
-  toCountDownPage(){
+  toCountDownPage () {
     wx.navigateTo({
       url: '../../pages/countDown/countDown',
     })

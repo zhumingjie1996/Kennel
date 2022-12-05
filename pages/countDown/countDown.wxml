@@ -11,13 +11,13 @@
             {{tools.sub(topItem.eventDate)}}
         </view>
     </view>
-    <view wx:else>
+    <view wx:elif="{{topItem === undefined}}">
         <view class="skeletonItem"><van-skeleton row="1" row-width="{{['70%']}}" /></view>
         <view class="skeletonItem"><van-skeleton row="1" row-width="{{['85%']}}" /></view>
         <view class="skeletonItem"><van-skeleton row="1" row-width="{{['60%']}}" /></view>
     </view>
     <!-- <van-skeleton wx:else title row="5" row-width="{{['85%','85%','85%','60%','60%']}}" /> -->
-    <van-divider contentPosition="center">以上置顶</van-divider>
+    <van-divider contentPosition="center" wx:if="{{topItem.eventName && timeInterval && isGone}}">以上置顶</van-divider>
     <count-down-item wx:for="{{dataList}}" wx:for-index="index" wx:for-item="item" wx:key="{{item._id}}" eventInfo="{{item}}" bind:deleteOver="deleteOver"></count-down-item>
     <van-popup position="bottom" z-index="1001" custom-style="height: 50%" show="{{ addShow }}" bind:close="onAddClose">
         <van-cell-group>

@@ -18,13 +18,13 @@ Page({
     // 新增表单
     addData: {},
     // 是否正在上传
-    isUploadNow:false,
+    isUploadNow: false,
     // 数据列表
-    dataList:[],
+    dataList: [],
     // 置顶项
-    topItem:{},
+    topItem: undefined,
     // 已经/还有
-    isGone:''
+    isGone: ''
   },
 
   /**
@@ -62,38 +62,49 @@ Page({
 
   },
   // 获取列表
-  getDataList(){
+  getDataList () {
     // 获取
     wx.cloud.callFunction({
       name: 'getSomething',
       data: {
-        name:'countDownEvents',
-        whereObj:{}
+        name: 'countDownEvents',
+        whereObj: {}
       }
-    }).then(res=>{
+    }).then(res => {
       this.setData({
-        dataList:res.result.data
+        dataList: res.result.data
       })
       // 置顶
-      let topItem = this.data.dataList.filter(item=>{
+      let topItem = this.data.dataList.filter(item => {
         return item.isTop === true
       })
+      // 如果没有置顶项
+      if (topItem.length === 0) return
       this.setData({
-        topItem:topItem[0]
+        topItem: topItem[0]
       })
-      setInterval(()=>{
-        let timeInterval = formatTimeInterval(Math.abs(new Date().getTime() - this.data.topItem.eventDate))
-        let isGone = false;
-        if(new Date().getTime() - this.data.topItem.eventDate >= 0){
-          isGone = true
-        }else{
-          isGone = false
-        }
+      if (this.data.int) {
         this.setData({
-          timeInterval,
-          isGone:isGone ? '已经' : '还有',
+          int: undefined,
+          timeInterval: undefined,
+          isGone: '',
         })
-      },1000)
+      }
+      this.setData({
+        int: setInterval(() => {
+          let timeInterval = formatTimeInterval(Math.abs(new Date().getTime() - this.data.topItem.eventDate))
+          let isGone = false;
+          if (new Date().getTime() - this.data.topItem.eventDate >= 0) {
+            isGone = true
+          } else {
+            isGone = false
+          }
+          this.setData({
+            timeInterval,
+            isGone: isGone ? '已经' : '还有',
+          })
+        }, 1000)
+      })
     })
   },
   // 点击新增倒计时
@@ -108,7 +119,7 @@ Page({
         // 事件是否置顶当前页面
         isTop: false,
         // 事件是否在首页显示
-        isShowIndex: false
+        isShowIndex: false,
       }
     })
   },
@@ -145,7 +156,7 @@ Page({
     this.onCloseAddCalendar()
   },
   // 点击取消选择日期
-  onCancel(){
+  onCancel () {
     this.onCloseAddCalendar()
   },
   // 点击上传
@@ -158,24 +169,23 @@ Page({
       })
       return
     }
-    console.log(_this.data.addData)
     // 显示正在上传
     this.setData({
-      isUploadNow:true
+      isUploadNow: true
     })
     wx.cloud.callFunction({
       name: 'addSomething',
       data: {
-        name:'countDownEvents',
-        addData:_this.data.addData
+        name: 'countDownEvents',
+        addData: _this.data.addData
       }
-    }).then(res=>{
+    }).then(res => {
       this.setData({
-        isUploadNow:false
+        isUploadNow: false
       })
       wx.showToast({
-        icon:'success',
-        title:'上传成功'
+        icon: 'success',
+        title: '上传成功'
       });
       // 关闭新增弹窗
       this.onAddClose();
@@ -199,6 +209,7 @@ Page({
     let _this = this;
     _this.setData({
       dataList: [],
+      topItem:{}
     });
     _this.getDataList();
   },
