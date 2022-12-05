@@ -10,7 +10,8 @@ Page({
     bottomTip: '你已经扒拉到底了～',
     isOperate: false,
     //置顶倒计时
-    isGone: ''
+    isGone: '',
+    topCountDownItem:{}
   },
   getCommits: function () {
     let _this = this;
@@ -48,7 +49,7 @@ Page({
         });
         if (this.data.int) {
           this.setData({
-            int: undefined
+            int: function(){}
           })
         }
         this.setData({
